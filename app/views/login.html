@@ -1,0 +1,71 @@
+﻿<div class="hidden-xs">
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+
+<style>
+    input, .form-control {
+        padding: 7px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        height: auto;
+    }
+</style>
+
+<br />
+<br />
+
+<form name="loginForm" class="login-form" role="form">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="well">
+                <h3 class="form-login-heading"><i style="color:#dc2c0f" class="fa fa-unlock-alt"></i>&nbsp;{{ 'Logintext' | translate }} <small class="pull-right"></small></h3>
+                <input id="loginusername" type="text" class="form-control" placeholder="{{ 'Email' | translate }}" data-ng-model="loginData.userName" value="" required>
+                <br />
+                <input id="password" type="password" class="form-control" placeholder="{{ 'Password' | translate }}" data-ng-model="loginData.password" value="" required>
+                <br />
+
+
+
+                <!--<a class="btn btn-md btn-info btn-block" href="#/graph">Login</a>-->
+                <button  style="margin-top: 10px" class="btn btn-md btn-danger btn-block" type="submit" data-ng-click="login123()">
+
+                    <span style="display: none;" class="loader"><i class="fa fa-spin fa-spinner"></i>{{ 'Pleasewait' | translate }}... </span>
+                    <span class="logintext">{{ 'Logintext' | translate }}</span>
+
+                </button>
+
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+<br />
+
+<div style="display:none;" class="well nointernet">
+    <h4 style="color:red" id="nointernet"></h4>
+</div>
+
+<br />
+<br />
+
+
+<div class="navbar-fixed-bottom">
+<div style="text-align:center" class="row">
+    <div style="border-right:1px solid #fff" class="col-md-6 col-xs-6 btn-danger">
+        <a href="#/signup" style="color: #fff;" class="btn">New member</a>
+
+    </div>
+    <div class="col-md-6 col-xs-6 btn-danger">
+        <a href="#/forgotpassword" style="color: #fff; white-space:nowrap" class="btn">Forgot Password?</a>
+    </div>
+</div>
+
+</div>
+
+

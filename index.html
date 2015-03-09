@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="AngularAuthApp">
+<head>
+
+    <meta name="keywords" content="angularjs,SPA,Single Page Application,refresh tokens,authentication,bearer token authentication,OWIN,bootstrap,bootstrap ui,tutorial,JS framework,ASP.NET WEB API 2,Taiseer Joudeh" />
+    <meta name="description" content="SPA built using angularjs,authentication is done using bearer token,back end built using Asp.net web api 2 and OWIN Framework,creatd by Taiseer Joudeh" />
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>Voltameter App </title>
+    <link href="content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/css/site.css" rel="stylesheet" />
+    <link href="content/css/toastr.css" rel="stylesheet" />
+    <link href="content/css/loading-bar.css" rel="stylesheet" />
+    <link href="content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="content/css/social-buttons.css" rel="stylesheet" />
+    <link href="content/css/idangerous.swiper.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-switch.css" rel="stylesheet" />
+  
+
+    <style>
+        body {
+            line-height: initial !important;
+            margin-bottom: 0px;
+        }
+
+        .text-primary {
+            font-size: 15px;
+            white-space: normal;
+            color: #fff;
+            text-align: left;
+            min-height: 90px;
+        }
+
+        .hookdiv {
+            font-size: 50px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            height: 50px;
+            color: #ccc;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .highcharts-button {
+            display: none;
+        }
+
+        .highcharts-legend-item {
+        }
+
+
+
+        .weather li {
+            font-size: 14px;
+        }
+
+        #weather2 img {
+            height: 75px;
+        }
+
+        .btn {
+            padding: 13px 15px;
+            font-size: 14px;
+            white-space: initial;
+        }
+
+        .form-horizontal .control-label {
+            text-align: left;
+            font-size: 15px;
+        }
+
+        p {
+            margin: 0px;
+            font-size: 13px;
+        }
+
+        hr {
+            margin-top: 14px;
+            margin-bottom: 14px;
+        }
+
+        .progress {
+            margin-bottom: 2px;
+            padding: 0px;
+            margin-top: 3px;
+        }
+
+        .well {
+            min-height: 20px;
+            padding: 10px;
+            margin-bottom: 0px;
+            background-color: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+            border: transparent;
+        }
+
+        .highcharts-yaxis-title {
+            font-size: 8px;
+        }
+    </style>
+
+    <style>
+        /* Demo Syles */
+
+        .device {
+            width: 100%;
+            position: relative;
+        }
+
+            .device .arrow-left {
+                background: url(img/arrows.png) no-repeat left top;
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                margin-top: -15px;
+                width: 17px;
+                height: 30px;
+            }
+
+            .device .arrow-right {
+                background: url(img/arrows.png) no-repeat left bottom;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                margin-top: -15px;
+                width: 17px;
+                height: 30px;
+            }
+
+        .swiper-container {
+            width: 100%;
+        }
+
+        .content-slide {
+            padding: 20px;
+            color: #000;
+        }
+
+        .title {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .pagination {
+            position: absolute;
+            left: 0;
+            text-align: center;
+            bottom: 5px;
+            width: 100%;
+        }
+
+        .swiper-pagination-switch {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background: #999;
+            box-shadow: 0px 1px 2px #555 inset;
+            margin: 0 3px;
+            cursor: pointer;
+        }
+
+        .swiper-active-switch {
+            background: #fff;
+        }
+
+
+
+        .swiper-wrapper {
+            height: auto !important;
+        }
+
+        .swiper-slide {
+            height: auto !important;
+        }
+
+        .navbar-nav > li > a {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .navbar-brand {
+            float: left;
+            padding: 5px 14px;
+            font-size: 19px;
+            line-height: 21px;
+            height: auto;
+            color: #000 !important;
+        }
+
+        .navbar {
+            min-height: 0px;
+            color: #000;
+        }
+
+        .navbar-toggle {
+            position: relative;
+            float: right;
+            margin-right: 15px;
+            padding: 4px 8px;
+            margin-top: 0.5px;
+            margin-bottom: 0.5px;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 0;
+            color: #000;
+        }
+
+        .navbar-default {
+            background-color: #dc2c0f;
+            border-color: #dc2c0f;
+        }
+
+            .navbar-default .navbar-nav > li > a {
+                color: #000;
+            }
+
+            .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+                border-color: #A6A3A3;
+            }
+
+        #container-speed .highcharts-container {
+            height: auto !important;
+        }
+
+            #container-speed .highcharts-container svg {
+                height: auto !important;
+            }
+
+        .gauge__value {
+            display: none;
+        }
+
+        .btn-danger {
+color: #ffffff;
+background-color: #A6301C;
+border-color: #ea2f10;
+}
+    </style>
+
+
+
+</head>
+<body data-ng-controller="indexController">
+
+    <nav style="color: #fff;" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button data-ng-show="authentication.isAuth" type="button" class="navbar-toggle  collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+             
+                </button>
+                <a style="color:#fff !important;" class="navbar-brand">Volt@ - IOS</a>
+            </div>
+
+            
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        <div data-ng-view="">
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!--<div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>-->
+
+
+
+
+
+
+
+
+<!--<script src="scripts/cordova.js"></script>-->
+
+  
+
+
+    <!-- 3rd party libraries -->
+    <script src="scripts/jquery-1.11.0.min.js"></script>
+
+
+
+
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/bootbox.js"></script>
+
+
+
+
+
+
+    <script src="scripts/toastr.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-bottom-right",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "3000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+
+
+
+
+
+
+
+    <script src="scripts/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+
+    <script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="scripts/exporting.js"></script>
+
+    <script type="text/javascript" src="scripts/raphael-min.js"></script>
+    <script type="text/javascript" src="scripts/kuma-gauge.jquery.js"></script>
+    <script src="scripts/bootstrap-switch.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/loading-bar.min.js"></script>
+    <script src="scripts/angular-translate.js"></script>
+
+    <script src="scripts/angular-translate-loader-static-files.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bower-angular-translate-loader-url/2.0.0/angular-translate-loader-url.js"></script>
+
+    <script type="text/javascript" language="javascript" src="scripts/jquery.cookie.js"></script>
+
+
+    <script src="scripts/date.js"></script>
+    <script src="scripts/moment.min.js"></script>
+
+      <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+
+    
+
+    <script src="scripts/ui-bootstrap-0.8.0.js"></script>
+    <script src="scripts/ui-bootstrap-tpls-0.8.0.js"></script>
+
+    <script data-require="angular-resource@1.2.14" data-semver="1.2.14" src="http://code.angularjs.org/1.2.14/angular-resource.js"></script>
+    <!-- Load app main script -->
+    <script src="scripts/SwitchModule.js"></script>
+    <script src="app/app.js?v=2"></script>
+    <script src="scripts/multilangual.js"></script>
+
+
+    <!-- Load services -->
+    <script src="app/services/authInterceptorService.js?v=2"></script>
+    <script src="app/services/authService.js?v=2"></script>
+
+    <script src="app/services/tokensManagerService.js?v=2"></script>
+
+    <!-- Load controllers -->
+
+    <script src="app/controllers/indexController.js?v=2"></script>
+    
+    <script src="app/controllers/loginController.js?v=2"></script>
+
+    <script src="app/controllers/forgotcontroller.js?v=2"></script>
+  
+
+    <script src="app/controllers/signupController.js?v=2"></script>
+
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            document.addEventListener("backbutton", onBackKeyDown, false); //Listen to the User clicking on the back button
+            document.addEventListener("offline", function () { document.getElementById("nointernet").innerHTML = "No internet available"; $(".nointernet").show() }, false);
+            document.addEventListener("online", function ()
+            {}, false);
+        }
+
+        function onBackKeyDown(e) {
+            e.preventDefault();
+            navigator.notification.confirm("Are you sure you want to exit ?", onConfirm, "Confirmation", "Yes,No");
+            // Prompt the user with the choice
+        }
+
+        function onConfirm(button) {
+            if (button == 2) {//If User selected No, then we just do nothing
+                return;
+            } else {
+                navigator.app.exitApp();// Otherwise we quit the app.
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
