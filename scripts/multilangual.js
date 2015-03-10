@@ -112,6 +112,9 @@ app.config(function ($translateProvider) {
         oldpassword: 'Old password',
         newpassword: 'New password',
         confirmnewpassword: 'Confirm new password',
+        inyourneighbour: 'in your neighbourhood',
+        bed: 'bed',
+        other: 'Other'
     })
 
         //Russian Translation
@@ -228,6 +231,10 @@ app.config(function ($translateProvider) {
         oldpassword: 'Старый пароль',
         newpassword: 'Новый пароль',
         confirmnewpassword: 'Подтвердите новый пароль',
+        inyourneighbour: 'в вашем районе',
+        bed: 'кровать',
+        other: 'другой',
+
 
     })
 
@@ -346,6 +353,9 @@ app.config(function ($translateProvider) {
         oldpassword: 'contraseña anterior',
         newpassword: 'nueva contraseña',
         confirmnewpassword: 'Confirmar nueva contraseña',
+        inyourneighbour: 'en su vecindario',
+        bed: 'cama',
+        other: 'otro',
     });
     $translateProvider.preferredLanguage('en');
 });

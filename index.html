@@ -15,7 +15,10 @@
     <link href="content/css/social-buttons.css" rel="stylesheet" />
     <link href="content/css/idangerous.swiper.css" rel="stylesheet" />
     <link href="content/css/bootstrap-switch.css" rel="stylesheet" />
-  
+
+
+    <link href="content/css/simple-sidebar.css" rel="stylesheet" />
+
 
     <style>
         body {
@@ -239,10 +242,10 @@
         }
 
         .btn-danger {
-color: #ffffff;
-background-color: #A6301C;
-border-color: #ea2f10;
-}
+            color: #ffffff;
+            background-color: #A6301C;
+            border-color: #ea2f10;
+        }
     </style>
 
 
@@ -255,17 +258,100 @@ border-color: #ea2f10;
             <div class="navbar-header">
                 <button data-ng-show="authentication.isAuth" type="button" class="navbar-toggle  collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
-             
-                </button>
-                <a style="color:#fff !important;" class="navbar-brand">Volt@ - IOS</a>
-            </div>
 
-            
+                </button>
+                <a style="float: left" data-ng-show="authentication.isAuth" href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-th-list"></i></a>
+                <a style="color: #fff !important; float: left" class="navbar-brand">&nbsp;&nbsp;&nbsp;Volt@ - IOS</a>
+
+            </div>
+          
+
+            <!--<div id="navbar" class="navbar-collapse collapse">
+                <ul data-ng-show="authentication.isAuth" class="nav navbar-nav">
+                    <li><a href="#/graph"><i class="fa fa-home"></i>&nbsp;{{ 'home' | translate }} </a></li>
+                      <li><a href="#/alert"><i class="fa fa-exclamation-circle"></i>&nbsp;{{ 'alerts' | translate }}</a></li>
+                      <li><a href="#/account"><i class="fa fa-cog"></i>&nbsp;{{ 'accountsetup' | translate }}</a></li>
+                     <li><a href="#/household"><i class="fa fa-database"></i>&nbsp;{{ 'householdprofile' | translate }}</a></li>
+                    <li><a href="#/changepassword"><i class="fa fa-unlock"></i>&nbsp;{{ 'changeyourpassword' | translate }}</a></li>
+                   
+               
+
+                    <li data-ng-show="authentication.isAuth">
+                        <div class="btn-group">
+                            <button class="btn btn-default">
+                                <img style="width: 25px;" src="{{countryicon}}" alt="Alternate Text" />
+                                &nbsp;<span ng-bind="languageText"></span></button>
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="languagechanger" ng-click="changeLanguage('en')">
+                                    <img style="width: 25px;" src="usa.png" alt="Alternate Text" />
+                                    English</a> </li>
+                                <li><a class="languagechanger" ng-click="changeLanguage('it')">
+                                    <img src="RussianFlag.gif" alt="Alternate Text" />
+                                    {{ 'russiantext' | translate }}</a> </li>
+                                <li><a class="languagechanger" ng-click="changeLanguage('sp')">
+                                    <img src="spain.png" alt="Alternate Text" />
+                                    {{ 'spanishtext' | translate }}</a> </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a data-ng-click="logOut()"><i class="fa fa-sign-out"></i>&nbsp;{{ 'Signout' | translate }}</a></li>
+
+                </ul>
+
+            </div>-->
+
             <!--/.nav-collapse -->
         </div>
     </nav>
 
+    <!-- Sidebar -->
+    <!-- Sidebar -->
 
+    <div data-ng-show="authentication.isAuth" id="wrapper">
+        <div id="sidebar-wrapper">
+
+        
+          
+            <ul style="margin-top:5px;" class="sidebar-nav">
+                   <li data-ng-show="authentication.isAuth">
+                        <div class="btn-group">
+                            <button style="padding:5px;" class="btn btn-danger">  
+                                <img style="width: 25px;" src="{{countryicon}}" alt="Alternate Text" />
+                                &nbsp;<span ng-bind="languageText"></span></button>
+                            <button style="padding-top:5px; padding-bottom:5px;" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="languagechanger" ng-click="changeLanguage('en')">
+                                    <img style="width: 25px;" src="usa.png" alt="Alternate Text" />
+                                    English</a> </li>
+                                <li><a class="languagechanger" ng-click="changeLanguage('it')">
+                                    <img src="RussianFlag.gif" alt="Alternate Text" />
+                                    {{ 'russiantext' | translate }}</a> </li>
+                                <li><a class="languagechanger" ng-click="changeLanguage('sp')">
+                                    <img src="spain.png" alt="Alternate Text" />
+                                    {{ 'spanishtext' | translate }}</a> </li>
+                            </ul>
+
+                      
+                        </div>
+                    </li>
+                <li><a href="#/graph">{{ 'home' | translate }} </a></li>
+                <li><a href="#/graph">{{ 'alerts' | translate }}</a></li>
+                <li><a href="#/graph">{{ 'accountsetup' | translate }}</a></li>
+                <li><a href="#/graph">{{ 'householdprofile' | translate }}</a></li>
+                <li><a href="#/graph">{{ 'changeyourpassword' | translate }}</a></li>
+             
+                    <li><a data-ng-click="logOut()">{{ 'Signout' | translate }}</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- /#sidebar-wrapper -->
     <div class="container">
 
         <div data-ng-view="">
@@ -291,9 +377,9 @@ border-color: #ea2f10;
 
 
 
-<!--<script src="scripts/cordova.js"></script>-->
+    <!--<script src="scripts/cordova.js"></script>-->
 
-  
+
 
 
     <!-- 3rd party libraries -->
@@ -330,7 +416,16 @@ border-color: #ea2f10;
     </script>
 
 
+    <script>
 
+     
+        $("#menu-toggle").click(function (e) {
+
+
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 
 
 
@@ -360,9 +455,9 @@ border-color: #ea2f10;
     <script src="scripts/date.js"></script>
     <script src="scripts/moment.min.js"></script>
 
-      <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
 
-    
+
 
     <script src="scripts/ui-bootstrap-0.8.0.js"></script>
     <script src="scripts/ui-bootstrap-tpls-0.8.0.js"></script>
@@ -383,13 +478,14 @@ border-color: #ea2f10;
     <!-- Load controllers -->
 
     <script src="app/controllers/indexController.js?v=2"></script>
-    
+
     <script src="app/controllers/loginController.js?v=2"></script>
 
     <script src="app/controllers/forgotcontroller.js?v=2"></script>
-  
 
     <script src="app/controllers/signupController.js?v=2"></script>
+
+    <script src="app/controllers/graphcontroller.js?v=2"></script>
 
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -398,7 +494,7 @@ border-color: #ea2f10;
             document.addEventListener("backbutton", onBackKeyDown, false); //Listen to the User clicking on the back button
             document.addEventListener("offline", function () { document.getElementById("nointernet").innerHTML = "No internet available"; $(".nointernet").show() }, false);
             document.addEventListener("online", function ()
-            {}, false);
+            { }, false);
         }
 
         function onBackKeyDown(e) {

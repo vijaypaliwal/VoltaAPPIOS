@@ -29,6 +29,12 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/home.html"
     });
 
+
+    $routeProvider.when("/graph", {
+        controller: "graphcontroller",
+        templateUrl: "app/views/graph.html"
+    });
+
    
 
     // Default Page load 
