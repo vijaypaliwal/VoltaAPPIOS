@@ -1,10 +1,12 @@
 ﻿
 'use strict';
 
+
 app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStorageService', '$location', 'log', function ($scope, $http, authService, localStorageService, $location, log) {
 
 
-    debugger;
+ 
+ 
     $scope.authentication = authService.authentication.isAuth;
     $scope.userid = authService.authentication.userId;
     $scope.sensorId = authService.authentication.sensorId;
@@ -1522,9 +1524,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         
     });
 
-    $("#wrapper").toggleClass("toggled");
-
-    //setInterval(function () { $scope.gettodaycounter(); }, 10000);
 
 }]);
 

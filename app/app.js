@@ -35,6 +35,16 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/graph.html"
     });
 
+    $routeProvider.when("/alert", {
+        controller: "alertcontroller",
+        templateUrl: "app/views/alert.html"
+    });
+
+    $routeProvider.when("/changepassword", {
+        controller: "changepasswordcontroller",
+        templateUrl: "app/views/changepassword.html"
+    });
+
    
 
     // Default Page load 

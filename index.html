@@ -246,9 +246,8 @@
             background-color: #A6301C;
             border-color: #ea2f10;
         }
+     
     </style>
-
-
 
 </head>
 <body data-ng-controller="indexController">
@@ -264,6 +263,16 @@
                 <a style="color: #fff !important; float: left" class="navbar-brand">&nbsp;&nbsp;&nbsp;Volt@ - IOS</a>
 
             </div>
+
+                    <span data-ng-hide="authentication.isAuth" style="margin-top: 4px; position:absolute; right:25px; top:3px;  cursor: pointer; color:#000;">
+                         
+                           &nbsp; <span ng-click="changeLanguage('en')">
+                                <img style="width:29px; border:1px solid #fff" src="usa.png" alt="Alternate Text" /></span> &nbsp;
+                           <span ng-click="changeLanguage('it')">
+                               <img style="width:25px; border:1px solid #fff" src="RussianFlag.gif" alt="Alternate Text" /></span>  &nbsp;
+                             <span ng-click="changeLanguage('sp')">
+                               <img style="width:25px; border:1px solid #fff" src="spain.png" alt="Alternate Text" /></span>
+                        </span>
           
 
             <!--<div id="navbar" class="navbar-collapse collapse">
@@ -340,12 +349,11 @@
                         </div>
                     </li>
                 <li><a href="#/graph">{{ 'home' | translate }} </a></li>
-                <li><a href="#/graph">{{ 'alerts' | translate }}</a></li>
+                <li><a href="#/alert">{{ 'alerts' | translate }}</a></li>
                 <li><a href="#/graph">{{ 'accountsetup' | translate }}</a></li>
                 <li><a href="#/graph">{{ 'householdprofile' | translate }}</a></li>
-                <li><a href="#/graph">{{ 'changeyourpassword' | translate }}</a></li>
-             
-                    <li><a data-ng-click="logOut()">{{ 'Signout' | translate }}</a></li>
+                <li><a href="#/changepassword">{{ 'changeyourpassword' | translate }}</a></li>
+                <li><a data-ng-click="logOut()">{{ 'Signout' | translate }}</a></li>
             </ul>
         </div>
     </div>
@@ -359,8 +367,6 @@
 
 
     </div>
-
-
 
 
 
@@ -425,6 +431,15 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+
+
+        $(".sidebar-nav li a").click(function (e) {
+
+            $("#wrapper").toggleClass("toggled");
+        });
+
+
+        
     </script>
 
 
@@ -486,6 +501,12 @@
     <script src="app/controllers/signupController.js?v=2"></script>
 
     <script src="app/controllers/graphcontroller.js?v=2"></script>
+
+    <script src="app/controllers/alertcontroller.js?v=2"></script>
+
+    <script src="app/controllers/changepasswordcontroller.js?v=2"></script>
+
+    
 
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
