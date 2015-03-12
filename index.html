@@ -344,14 +344,12 @@
                                     <img src="spain.png" alt="Alternate Text" />
                                     {{ 'spanishtext' | translate }}</a> </li>
                             </ul>
-
-                      
                         </div>
                     </li>
                 <li><a href="#/graph">{{ 'home' | translate }} </a></li>
                 <li><a href="#/alert">{{ 'alerts' | translate }}</a></li>
-                <li><a href="#/graph">{{ 'accountsetup' | translate }}</a></li>
-                <li><a href="#/graph">{{ 'householdprofile' | translate }}</a></li>
+                <li><a href="#/account">{{ 'accountsetup' | translate }}</a></li>
+                <li><a href="#/household">{{ 'householdprofile' | translate }}</a></li>
                 <li><a href="#/changepassword">{{ 'changeyourpassword' | translate }}</a></li>
                 <li><a data-ng-click="logOut()">{{ 'Signout' | translate }}</a></li>
             </ul>
@@ -396,14 +394,7 @@
 
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/bootbox.js"></script>
-
-
-
-
-
-
     <script src="scripts/toastr.js"></script>
-
     <script>
         toastr.options = {
             "closeButton": true,
@@ -505,6 +496,10 @@
     <script src="app/controllers/alertcontroller.js?v=2"></script>
 
     <script src="app/controllers/changepasswordcontroller.js?v=2"></script>
+
+    <script src="app/controllers/accountcontroller.js?v=2"></script>
+
+    <script src="app/controllers/householdcontroller.js?v=2"></script>
 
     
 

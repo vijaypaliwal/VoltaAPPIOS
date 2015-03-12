@@ -1,0 +1,144 @@
+﻿
+<h3 style="margin-top: 5px; margin-bottom: 0px;">{{ 'accountsetup' | translate }} </h3>
+<hr />
+
+<form name="Account" id="Account" class="form-horizontal" role="form">
+
+   <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'accountnumber' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.accountnumber" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'title' | translate }}</label>
+                <div class="col-md-4">
+                    <select id="titlelist" data-ng-model="account.title" class="form-control">
+                        <option value="MR">MR</option>
+                        <option value="MRS">MRS</option>
+                        <option value="MISS">MISS</option>
+                        <option value="MS">MS</option>
+                        <option value="DR">DR</option>
+                        <option value="PROF">PROF</option>
+                        <option value="REV">REV</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'firstname' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.firstname" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'lastname' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.lastname" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="form-group">
+        <label class="control-label col-md-3">{{ 'housename' | translate }} / {{ 'number' | translate }}</label>
+        <div class="col-md-4">
+            <input data-ng-model="account.housename" class="form-control" type="text" />
+        </div>
+    </div>
+
+   <div class="form-group">
+        <label class="control-label col-md-3">{{ 'addressline1' | translate }}</label>
+        <div class="col-md-4">
+            <input data-ng-model="account.address1" class="form-control" type="text" />
+        </div>
+    </div>
+
+   <div class="form-group">
+        <label class="control-label col-md-3">{{ 'addressline2' | translate }}</label>
+        <div class="col-md-4">
+            <input data-ng-model="account.address2" class="form-control" type="text" />
+        </div>
+    </div>
+
+   <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'town' | translate }} / {{ 'city' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.town" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'region' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.region" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'zipcode' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.post" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <label class="control-label col-md-3">{{ 'country' | translate }}</label>
+                <div class="col-md-4">
+                    <input data-ng-model="account.country" class="form-control" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="form-group">
+        <label class="control-label col-md-3">{{ 'emailaddress' | translate }}</label>
+        <div class="col-md-4">
+            <input data-ng-model="account.email" data-ng-disabled="true" class="form-control" type="text" />
+        </div>
+    </div>
+
+   <hr />
+   <a data-ng-click="updateprofile()" style="width: 100%;" class="btn btn-danger"><i class="fa fa-check"></i> {{ 'save' | translate }}</a>
+   </form>
+<br />
+
+<style>
+    label {
+        margin-bottom: 3px !important;
+    }
+
+    .form-horizontal .control-label {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 2px;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 3px;
+    }
+</style>
+
+

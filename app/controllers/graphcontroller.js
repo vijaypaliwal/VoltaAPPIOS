@@ -1,12 +1,10 @@
 ﻿
 'use strict';
 
-
 app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStorageService', '$location', 'log', function ($scope, $http, authService, localStorageService, $location, log) {
 
 
- 
- 
+    debugger;
     $scope.authentication = authService.authentication.isAuth;
     $scope.userid = authService.authentication.userId;
     $scope.sensorId = authService.authentication.sensorId;
@@ -25,7 +23,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
     $scope.rememberme = authData.remember;
 
-   
+
 
 
 
@@ -61,22 +59,20 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
     $scope.myculture = function (culture) {
 
-     
+
 
         if (culture == 'it') {
 
-      
+
             $scope.culturedateformat = "DD MMM YYYY h:mm a";
             var currentdate = moment(new Date()).format("DD MMM YYYY h:mm a");
             var newarray = currentdate.split(" ");
 
-          
-            if (newarray[1] == "Feb")
-            {
+
+            if (newarray[1] == "Feb") {
                 newarray[1] = "Февраль";
             }
-            if (newarray[1] == "Mar")
-            {
+            if (newarray[1] == "Mar") {
                 newarray[1] = "Март";
             }
             if (newarray[4] == "am") {
@@ -88,7 +84,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             }
             var toConvertedString = newarray[0] + " " + newarray[1] + " " + newarray[2] + " " + newarray[3] + " " + newarray[4];
             $("#CurrentDate").html("<b>" + toConvertedString + "</b>");
-       
+
         }
 
         else {
@@ -99,7 +95,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
     }
-  
+
 
 
     var twoyearago = new Date();
@@ -270,7 +266,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }); break;
             case "sp":
                 $scope.kwhtext = 'KWh';
-              Highcharts.setOptions({
+                Highcharts.setOptions({
                     lang: {
                         months: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
                         weekdays: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
@@ -305,7 +301,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 showNeedle: true,
                 paddingY: 0,
                 paddingX: 0,
-                gaugeBackground : '#f4f4f4',
 
                 label: {
                     display: true,
@@ -459,7 +454,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             if (data.sensor != null) {
                 $scope.sensorid = data.sensor.id;
             }
-         
+
 
             $scope.propertytypename = data.propertyType.name;
             $scope.bedcounter = data.numberBedrooms;
@@ -490,7 +485,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 });
             }
 
-         
+
 
             $scope.utilizationinfo();
 
@@ -533,7 +528,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             },
             error: function (xhr, status) {
 
-               
+
 
 
             }
@@ -567,7 +562,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             $(".flag6").show()
         }
 
-       
+
 
     }
 
@@ -654,7 +649,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     };
 
 
-   
+
 
 
 
@@ -733,18 +728,24 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
         $scope.myculture(selectedlanguage);
 
-    
     }
-
-
-
 
     setInterval(function () { cycle() }, 1000);
 
 
-
     $scope.marginleft = $scope.now * 4;
 
+    if ($scope.now == 23) {
+        $scope.marginleft = 77;
+    }
+
+    if ($scope.now == 22 || $scope.now == 21) {
+        $scope.marginleft = 70;
+    }
+
+    if ($scope.now == 20) {
+        $scope.marginleft = 67;
+    }
 
     if ($scope.now >= 20) {
         $(".leftnow").show()
@@ -773,7 +774,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         $http.get($scope.bottomgraphurl, null, { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + $scope.AuthToken } }).success(function (data) {
 
 
-        
+
 
 
             var xData = [];
@@ -892,10 +893,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     text: ''
                 },
 
-                colors: [
-                           '#dc2c0f'
-                ],
-
 
                 xAxis: {
                     categories: yData,
@@ -954,7 +951,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
-         
+
 
 
 
@@ -977,7 +974,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             if (index == Current) {
                 $(this).addClass("btn btn-info");
             } else {
-                $(this).addClass("btn btn-danger");
+                $(this).addClass("btn btn-success");
             }
         });
         $scope.ActiveButton = CurrentPage;
@@ -1166,7 +1163,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
 
-               
+
                 break;
             case 2:
 
@@ -1211,7 +1208,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
 
-             break;
+                break;
             case 3:
 
 
@@ -1254,7 +1251,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
                 break;
-              
+
             case 4:
 
 
@@ -1513,17 +1510,19 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $scope.getdailyavgcounter();
     $scope.GetMyData(1);
 
-   
+
 
     $(".languagechanger").click(function () {
         setTimeout(function () {
 
             $scope.FirstTimeClick(1);
-           // FirstTimeClick(1)
+            // FirstTimeClick(1)
         }, 1500);
-        
+
     });
 
+
+    //setInterval(function () { $scope.gettodaycounter(); }, 10000);
 
 }]);
 

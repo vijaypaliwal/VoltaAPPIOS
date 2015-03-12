@@ -1,0 +1,127 @@
+﻿
+   
+
+<h3 style="margin-top: 0px; margin-bottom: 0px;">{{ 'householdprofile' | translate }}</h3>
+<hr />
+    <form name="houseHold" id="houseHold" class="form-horizontal" role="form">
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+
+            <label class="control-label col-md-4 ">{{ 'propertytype' | translate }}</label>
+            <div class="col-md-3 col-xs-6">
+                <select ng-model="household.propertytype" id="Propertytypelist" class="form-control">
+                </select>
+            </div>
+
+        </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+
+            <label class="control-label col-md-4">{{ 'numberofadults' | translate }}</label>
+            <div class="col-md-1 col-xs-4">
+                <select id="numberofadult" class="form-control" required ng-model="household.numberofadults" ng-options="choice.Value as choice.Value for choice in numberofadults"></select>
+            </div>
+
+        </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+
+            <label class="control-label col-md-4">{{ 'numberofchildren' | translate }}</label>
+            <div class="col-md-1 col-xs-4">
+                <select id="numberofchildren" class="form-control" ng-model="household.numberofchildrens" ng-options="choice.Value as choice.Value for choice in numberofchildrens"></select>
+            </div>
+        </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+
+            <label class="control-label col-md-4">{{ 'numberofbedroom' | translate }}</label>
+            <div class="col-md-1 col-xs-4">
+                <select id="numberofbedroom" required class="form-control" ng-model="household.numberofbedrooms" ng-options="choice.Value as choice.Value for choice in numberofbedrooms"></select>
+            </div>
+        </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+
+            <label class="control-label col-md-4">{{ 'electricityprovider' | translate }}</label>
+            <div class="col-md-3 col-xs-6">
+                <select ng-model="household.electricityprovider" id="electricityproviderlist" class="form-control">
+                </select>
+
+            </div>
+
+
+        </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+
+                <div class="form-group">
+        
+                <label class="control-label col-md-4">{{ 'tariff' | translate }}</label>
+                <div class="col-md-3 col-xs-6">
+                    <select ng-model="household.tarrif" id="tarriflist" class="form-control">
+                    </select>
+                </div>
+           
+        </div>
+            </div>
+        </div>
+
+        <style>
+          .form-horizontal .control-label {
+text-align: left;
+font-size: 12px;
+width: 100% !important;
+}
+        </style>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <a data-ng-disabled="houseHold.$invalid" data-ng-click="saveproperty()" class="btn btn-danger btn-sm pull-right"><i class="fa fa-check"></i>{{ 'save' | translate }}</a>
+                <input type="reset" style="display: none" id="resetbutton" value="" />
+            </div>
+        </div>
+    </form>
+
+
+<style>
+    label {
+        margin-bottom: 3px !important;
+    }
+
+    .form-horizontal.control-label {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 2px;
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 3px;
+    }
+</style>
+
+

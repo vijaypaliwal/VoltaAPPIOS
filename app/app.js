@@ -45,6 +45,16 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/changepassword.html"
     });
 
+    $routeProvider.when("/account", {
+        controller: "accountcontroller",
+        templateUrl: "app/views/account.html"
+    });
+
+    $routeProvider.when("/household", {
+        controller: "householdlcontroller",
+        templateUrl: "app/views/household.html"
+    });
+
    
 
     // Default Page load 
