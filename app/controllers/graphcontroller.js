@@ -974,7 +974,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             if (index == Current) {
                 $(this).addClass("btn btn-info");
             } else {
-                $(this).addClass("btn btn-success");
+                $(this).addClass("btn btn-danger");
             }
         });
         $scope.ActiveButton = CurrentPage;
