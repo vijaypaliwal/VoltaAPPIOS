@@ -301,6 +301,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 showNeedle: true,
                 paddingY: 0,
                 paddingX: 0,
+                fill: '0-#e99002:0-#ea2f10:50-#e99002:100',
 
                 label: {
                     display: true,
@@ -316,7 +317,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
             var currentusage = (data.power) * 100
             document.getElementById("currentusage").innerHTML = currentusage.toFixed(2);
-
 
 
 
@@ -886,13 +886,15 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     height: 225,
                     zoomType: 'x',
                 },
-                title: {
+                title: {     
                     text: ''
                 },
+                colors: [
+                   '#dc2c0f'
+                ],
                 subtitle: {
                     text: ''
                 },
-
 
                 xAxis: {
                     categories: yData,

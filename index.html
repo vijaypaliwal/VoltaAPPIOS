@@ -257,7 +257,7 @@
             <div class="navbar-header">
                 <button data-ng-show="authentication.isAuth" type="button" class="navbar-toggle  collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
-
+                        <span style="color:#fff"><i class="glyphicon glyphicon-user"></i>&nbsp;{{ 'Hello' | translate }} &nbsp;<span data-ng-bind="authentication.name"></span></span>
                 </button>
                 <a style="float: left" data-ng-show="authentication.isAuth" href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-th-list"></i></a>
                 <a style="color: #fff !important; float: left" class="navbar-brand">&nbsp;&nbsp;&nbsp;Volt@ - IOS</a>
@@ -325,6 +325,12 @@
         
           
             <ul style="margin-top:5px;" class="sidebar-nav">
+
+                <li style="text-align:center">
+                    <h4>Menu &nbsp;&nbsp;&nbsp;<small class="menuclose" style="background:#A6301C; padding:5px; padding-left:8px; padding-right:8px; color:#fff !important ">x</small></h4>
+                    <hr />
+                </li>
+
                    <li data-ng-show="authentication.isAuth">
                         <div class="btn-group">
                             <button style="padding:5px;" class="btn btn-danger">  
@@ -429,7 +435,12 @@
             $("#wrapper").toggleClass("toggled");
         });
 
+        $(".menuclose").click(function (e) {
 
+            $("#wrapper").toggleClass("toggled");
+        });
+
+       
         
     </script>
 
