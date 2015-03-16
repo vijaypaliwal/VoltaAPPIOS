@@ -518,9 +518,12 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             },
             success: function (response) {
 
+          
+                debugger;
 
                 $scope.percentage = response.percentage;
                 $scope.householdpercentage = response.percentegeHousehold;
+                $scope.basedonhistory = response.percentageSimilarHouse;
                 $scope.$apply();
                 $scope.flagposition();
 
@@ -560,6 +563,18 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         }
         else if ($scope.householdpercentage > 10 && $scope.householdpercentage < 50) {
             $(".flag6").show()
+        }
+
+
+        if ($scope.basedonhistory < -10 && $scope.basedonhistory > -50) {
+
+            $(".flag7").show()
+        }
+        else if ($scope.basedonhistory > -10 && $scope.basedonhistory < 10) {
+            $(".flag8").show()
+        }
+        else if ($scope.basedonhistory > 10 && $scope.basedonhistory < 50) {
+            $(".flag9").show()
         }
 
 

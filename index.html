@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿  <!DOCTYPE html>
 <html data-ng-app="AngularAuthApp">
 <head>
 
@@ -252,7 +252,11 @@
 </head>
 <body data-ng-controller="indexController">
 
-    <nav style="color: #fff;" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div style="height:15px; width:100%; background:#fff" class="navbar-fixed-top">  </div>
+
+  
+
+    <nav style="color: #fff; margin-top:15px;" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button data-ng-show="authentication.isAuth" type="button" class="navbar-toggle  collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -319,7 +323,7 @@
     <!-- Sidebar -->
     <!-- Sidebar -->
 
-    <div data-ng-show="authentication.isAuth" id="wrapper">
+    <div style="margin-top:15px"  data-ng-show="authentication.isAuth" id="wrapper">
         <div id="sidebar-wrapper">
 
         
@@ -327,7 +331,7 @@
             <ul style="margin-top:5px;" class="sidebar-nav">
 
                 <li style="text-align:center">
-                    <h4>Menu &nbsp;&nbsp;&nbsp;<small class="menuclose" style="background:#A6301C; padding:5px; padding-left:8px; padding-right:8px; color:#fff !important ">x</small></h4>
+                    <h4>{{ 'Menu' | translate }} &nbsp;&nbsp;&nbsp;<small class="menuclose" style="background:#A6301C; padding:5px; padding-left:8px; padding-right:8px; color:#fff !important ">x</small></h4>
                     <hr />
                 </li>
 
@@ -364,7 +368,7 @@
 
 
     <!-- /#sidebar-wrapper -->
-    <div class="container">
+    <div style="margin-top:15px" class="container">
 
         <div data-ng-view="">
         </div>
@@ -379,10 +383,6 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>-->
-
-
-
-
 
 
 
