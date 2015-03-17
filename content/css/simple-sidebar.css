@@ -69,12 +69,13 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #000;
+    color: #777;
+    border-bottom:1px solid #60a71b;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #dc2c0f;
+    color: #60a71b;
     background: rgba(255,255,255,0.2);
 }
 

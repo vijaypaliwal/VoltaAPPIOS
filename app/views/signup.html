@@ -1,49 +1,48 @@
-﻿
-
-
-
-<div class="">
-    <br /><br />
+﻿<div class="">
+    <br />
+    <br />
 </div>
 
 
 
-    <form style="max-width:100%;" name="signForm" class="form-login" role="form">
+<form style="max-width: 100%;" name="signForm" class="form-login" role="form">
 
-        <div class="row">
-            <div class="col-md-12">
-              <div class="well">
-              <h3 class="form-login-heading">{{ 'Signuptext' | translate }} <i style="color:#dc2c0f" class="fa fa-sign-in"></i></h3>
-              <input type="text" class="form-control" placeholder="{{ 'Firstname' | translate }}" data-ng-model="registration.firstName" required autofocus>
-              <input type="text" class="form-control" placeholder="{{ 'Lastname' | translate }}" data-ng-model="registration.lastName">
-              <input type="email" data-ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" class="form-control" placeholder="{{ 'Email' | translate }}" data-ng-model="registration.emailAddress" required autofocus>
-              <input type="password" class="form-control" placeholder="{{ 'Password' | translate }}" data-ng-model="registration.password" required>
-              <input type="password" class="form-control" placeholder="{{ 'Confirmpassword' | translate }}" data-ng-model="registration.confirmPassword" required>
-              <button data-ng-disabled="signForm.$invalid" class="btn btn-lg btn-danger btn-block" type="submit" data-ng-click="signUp()">
-              <span class="loader" style="display:none;"> <i class="fa fa-spin fa-spinner"></i> {{ 'Pleasewait' | translate }}... </span>
-              <span class="submittext">{{ 'Submit' | translate }} </span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <h3 class="form-login-heading">{{ 'Signuptext' | translate }} <i style="color: #589c16" class="fa fa-sign-in"></i></h3>
+                <input type="text" class="form-control" placeholder="{{ 'Firstname' | translate }}" data-ng-model="registration.firstName" required autofocus>
+                <input type="text" class="form-control" placeholder="{{ 'Lastname' | translate }}" data-ng-model="registration.lastName">
+                <input type="email" data-ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" class="form-control" placeholder="{{ 'Email' | translate }}" data-ng-model="registration.emailAddress" required autofocus>
+                <input type="password" class="form-control" placeholder="{{ 'Password' | translate }}" data-ng-model="registration.password" required>
+                <input type="password" class="form-control" placeholder="{{ 'Confirmpassword' | translate }}" data-ng-model="registration.confirmPassword" required>
+                <button data-ng-disabled="signForm.$invalid" class="btn btn-lg btn-danger btn-block" type="submit" data-ng-click="signUp()">
+                    <span class="loader" style="display: none;"><i class="fa fa-spin fa-spinner"></i>{{ 'Pleasewait' | translate }}... </span>
+                    <span class="submittext">{{ 'Submit' | translate }} </span>
 
-            </button>
-            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
-                {{message}}
+                </button>
+                <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                    {{message}}
+                </div>
             </div>
         </div>
-            </div>
-        </div>
-        
+    </div>
+
 </form>
 
 
 
 <div class="navbar-fixed-bottom">
-<div style="text-align:center" class="row">
-    <div style="border-right:1px solid #fff" class="col-md-6 col-xs-6 btn-danger">
-        <a href="#/login" style="color: #fff;" class="btn">{{ 'Logintext' | translate }}</a>
+    <div style="text-align: center" class="row">
+        <div style="border-right: 1px solid #fff" class="col-md-6 col-xs-6 btn-danger">
+            <a href="#/login" style="color: #fff;" class="btn">{{ 'Logintext' | translate }}</a>
 
+        </div>
+        <div class="col-md-6 col-xs-6 btn-danger">
+            <a href="#/forgotpassword" style="color: #fff; white-space: nowrap" class="btn">{{ 'Forgotpassword' | translate }}</a>
+        </div>
     </div>
-    <div class="col-md-6 col-xs-6 btn-danger">
-        <a href="#/forgotpassword" style="color: #fff; white-space:nowrap" class="btn">{{ 'Forgotpassword' | translate }}</a>
-    </div>
+
 </div>
 
-</div>
+

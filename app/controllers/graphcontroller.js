@@ -301,7 +301,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 showNeedle: true,
                 paddingY: 0,
                 paddingX: 0,
-                fill: '0-#e99002:0-#ea2f10:50-#e99002:100',
+                fill: '0-#60a71b:0-#A3C583:50-#60a71b:100',
 
                 label: {
                     display: true,
@@ -905,7 +905,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     text: ''
                 },
                 colors: [
-                   '#dc2c0f'
+                   '#60a71b'
                 ],
                 subtitle: {
                     text: ''

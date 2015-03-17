@@ -217,8 +217,8 @@
         }
 
         .navbar-default {
-            background-color: #dc2c0f;
-            border-color: #dc2c0f;
+            background-color: #589c16;
+            border-color: #589c16;
         }
 
             .navbar-default .navbar-nav > li > a {
@@ -243,9 +243,45 @@
 
         .btn-danger {
             color: #ffffff;
-            background-color: #A6301C;
-            border-color: #ea2f10;
+            background-color: #589c16;
+            border-color: #589c16;
         }
+        .btn-info
+        {
+background-color: #336700;
+ border-color: #60a71b;
+        }
+
+        .btn-danger:hover {
+            color: #ffffff;
+            background-color: #60a71b;
+            border-color: #60a71b;
+        }
+        .btn-danger[disabled]
+        {
+             color: #ffffff;
+            background-color: #60a71b;
+            border-color: #60a71b;
+        }
+
+        .progress-bar-danger {
+  background-color: #60a71b;
+}
+
+        .progress-bar-warning {
+  background-color: #336700;
+}
+
+        .open .dropdown-toggle.btn-danger {
+  color: #ffffff;
+  background-color: #60a71b;
+  border-color: #60a71b;
+}
+
+        .btn-group .dropdown-toggle.btn-danger~.dropdown-menu {
+  background-color: #60a71b;
+  border-color: #60a71b;
+}
      
     </style>
 
@@ -324,14 +360,14 @@
     <!-- Sidebar -->
 
     <div style="margin-top:20px"  data-ng-show="authentication.isAuth" id="wrapper">
-        <div id="sidebar-wrapper">
+        <div style="background:#EFEFEF" id="sidebar-wrapper">
 
         
           
             <ul style="margin-top:5px;" class="sidebar-nav">
 
                 <li style="text-align:center">
-                    <h4>{{ 'Menu' | translate }} &nbsp;&nbsp;&nbsp;<small class="menuclose" style="background:#A6301C; padding:5px; padding-left:8px; padding-right:8px; color:#fff !important ">x</small></h4>
+                    <h4>{{ 'Menu' | translate }} &nbsp;&nbsp;&nbsp;<small class="menuclose" style="background:#60a71b; padding:5px; padding-left:8px; padding-right:8px; color:#fff !important ">x</small></h4>
                     <hr />
                 </li>
 
