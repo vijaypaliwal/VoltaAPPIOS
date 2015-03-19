@@ -742,6 +742,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         $scope.updateFormateforGraphforLang();
 
         $scope.myculture(selectedlanguage);
+        $scope.tipdetails()
 
     }
 
@@ -1527,7 +1528,58 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $scope.getdailyavgcounter();
     $scope.GetMyData(1);
 
+    $scope.tipdetails = function () {
+        $.ajax({
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/tip',
+            type: "GET",
+            accept: "application/json",
+            headers: {
+                'Authorization': 'Bearer ' + $scope.AuthToken
+            },
 
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response, status) {
+
+
+                debugger;
+
+                $scope.firsttip = response[0].engTip;
+                $scope.secondtip = response[1].engTip;
+                $scope.thirdtip = response[2].engTip;
+
+                if (selectedlanguage == "it") {
+
+                    $scope.firsttip = response[0].rusTip;
+                    $scope.secondtip = response[1].rusTip;
+                    $scope.thirdtip = response[2].rusTip;
+
+                }
+
+                if (selectedlanguage == "sp") {
+
+                    $scope.firsttip = response[0].spaTip;
+                    $scope.secondtip = response[1].spaTip;
+                    $scope.thirdtip = response[2].spaTip;
+
+                }
+
+
+
+
+
+            },
+            error: function (err) {
+
+
+                debugger;
+
+            }
+        })
+    }
+
+
+    $scope.tipdetails()
 
     $(".languagechanger").click(function () {
         setTimeout(function () {
