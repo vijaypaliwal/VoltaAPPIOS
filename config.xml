@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.Volta-app"
-        version   = "1.1.0">
+        version   = "1.2.0">
 
   <name>Volta APP</name>
 
@@ -102,6 +102,9 @@
   <icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
   <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
   <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
+  <icon src="res/icon/ios/icon-60@2x.png"         gap:platform="ios"        width="120" height="120" />
+  <icon src="res/icon/ios/icon-76.png"            gap:platform="ios"        width="76" height="76" />
+  <icon src="res/icon/ios/icon-76-2x.png"         gap:platform="ios"        width="152" height="152" />
   <icon src="res/icon/webos/icon-64.png"          gap:platform="webos" />
   <icon src="res/icon/windows-phone/icon-48.png"  gap:platform="winphone" />
   <icon src="res/icon/windows-phone/icon-173.png" gap:platform="winphone"   gap:role="background" />
