@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.Volta-app"
-        version   = "1.0.0">
+        version   = "1.1.0">
 
   <name>Volta APP</name>
 
   <description>
-    Volta APP by SHIVAM ITCS.
+    Volta APP by SHIVAM ITCS
   </description>
 
   <author href="http://phonegap.com" email="support@phonegap.com">
