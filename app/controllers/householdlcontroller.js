@@ -1,10 +1,12 @@
-﻿'use strict';
+'use strict';
 app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', function ($scope, log, localStorageService) {
 
     $scope.householddetail = "Household Profile & Tariff Setup";
 
-    var authData = localStorageService.get('authorizationData');
 
+    var authData = localStorageService.get('authorizationData');
+    $scope.ElectricityProviderData = [];
+    $scope.TariffData = [];
     $scope.currentselectedlanguage = "en"
     setInterval(function () {
 
@@ -21,13 +23,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             $scope.electricityprovidertext = "Select electricity provider"
             $scope.providertext = "Select your provider"
         }
-
-     
-
     }, 100);
-
-
-  
 
 
     $scope.uid = authData.uid;
@@ -46,6 +42,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         tarrif: ""
 
     };
+    $scope.postcode = "";
+    $scope.areacode = "";
 
     $scope.numberofadults = [{ Id: 0, Value: "0" }, { Id: 1, Value: "1" }, { Id: 2, Value: "2" }, { Id: 3, Value: "3" }, { Id: 4, Value: "4" }, { Id: 5, Value: "5" }, { Id: 6, Value: "6" }, { Id: 7, Value: "7" }, { Id: 8, Value: "8" }, { Id: 9, Value: "9" }, { Id: 10, Value: "10" }];
     $scope.numberofchildrens = [{ Id: 0, Value: "0" }, { Id: 1, Value: "1" }, { Id: 2, Value: "2" }, { Id: 3, Value: "3" }, { Id: 4, Value: "4" }, { Id: 5, Value: "5" }, { Id: 6, Value: "6" }, { Id: 7, Value: "7" }, { Id: 8, Value: "8" }, { Id: 9, Value: "9" }, { Id: 10, Value: "10" }];
@@ -63,9 +61,11 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             },
             success: function (json) {
 
-                var data = json.length == 0 ? null : json[json.length - 1];
 
                 debugger;
+
+                var data = json.length == 0 ? null : json[json.length - 1];
+
 
                 if (data != null) {
 
@@ -76,22 +76,25 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     $scope.household.numberofadults = data.numberAdults;
                     $scope.household.numberofchildrens = data.numberChildren;
                     $scope.household.numberofbedrooms = data.numberBedrooms;
-                    $scope.household.tarrif = data.tariff.id;
-                    $scope.household.electricityprovider = data.tariff.electricityProviderXML.id;
+                    $scope.household.tarrif = data.tariff.name;
+                    $scope.household.electricityprovider = data.tariff.electricityProviderXML.name;
 
 
+                    $scope.electricityproviderlistvalue = $scope.GetElectricityValue($scope.household.electricityprovider);
+                    $scope.Tariffvalue = $scope.GetTariffValue($scope.household.tarrif);
 
                     $('#Propertytypelist option[value="' + $scope.household.propertytype + '"]').prop('selected', true);
                     $('#numberofadult option[value="' + $scope.household.numberofadults + '"]').prop('selected', true);
                     $('#numberofchildren option[value="' + $scope.household.numberofchildrens + '"]').prop('selected', true);
                     $('#numberofbedroom option[value="' + $scope.household.numberofbedrooms + '"]').prop('selected', true);
-                    $('#electricityproviderlist option[value="' + $scope.household.electricityprovider + '"]').prop('selected', true);
-                    $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
 
-                    $scope.getselectedtariff();
+                    $('#electricityproviderlist option[value="' + $scope.electricityproviderlistvalue + '"]').prop('selected', true);
+                    $('#tarriflist option[text="' + $scope.Tariffvalue + '"]').prop('selected', true);
+
+
+
+
                     $scope.$apply();
-
-
 
                 }
 
@@ -111,13 +114,97 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
     }
 
-  
-    
-   
+
+    $scope.getpostcode = function () {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property',
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                'Authorization': 'Bearer ' + $scope.token
+            },
+            success: function (json) {
+
+                var data = json.length == 0 ? null : json[json.length - 1];
 
 
-    $scope.getpropertytype = function ()
-    {
+                if (data.address != null) {
+
+
+                    $scope.postcode = data.address.postcode;
+
+                    $scope.$apply();
+
+                    $scope.getareacode();
+                }
+
+
+            },
+            error: function (xhr, status) {
+
+                log.error(xhr)
+            }
+        });
+    }
+
+    $scope.getareacode = function () {
+
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/postcode/' + "e14hj",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+
+                debugger;
+
+                $scope.areacode = data.areaCode;
+                $scope.$apply();
+
+
+
+                $scope.getelectricityprovider();
+
+
+            },
+            error: function (xhr, status) {
+
+
+                debugger;
+
+
+
+            }
+        });
+    }
+
+
+    $scope.GetElectricityValue = function (text) {
+        for (var i = 0; i < $scope.ElectricityProviderData.length; i++) {
+            if ($scope.ElectricityProviderData[i].name === text) {
+                console.log($scope.ElectricityProviderData[i].id);
+
+                return $scope.ElectricityProviderData[i].id;
+
+            }
+
+        }
+    }
+
+    $scope.GetTariffValue = function (text) {
+        for (var i = 0; i < $scope.TariffData.length; i++) {
+            if ($scope.TariffData[i].name === text) {
+                console.log($scope.TariffData[i].id);
+                return $scope.TariffData[i].id;
+
+            }
+
+        }
+    }
+    $scope.getpropertytype = function () {
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -128,15 +215,15 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
                 $('#Propertytypelist').empty();
                 var i = 0;
-              $('#Propertytypelist').append($('<option>').text($scope.selectpropertytext).attr('value', ""));
+                $('#Propertytypelist').append($('<option>').text($scope.selectpropertytext).attr('value', ""));
                 for (i = 0; i < json.length; i++) {
                     $('#Propertytypelist').append($('<option>').text(json[i].name).attr('value', json[i].id));
 
-                   }
+                }
 
-               
-                 
-            
+
+
+
 
                 debugger;
 
@@ -153,20 +240,21 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
     }
 
 
-    $scope.getelectricityprovider = function ()
-    {
+    $scope.getelectricityprovider = function () {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
+                //$scope.ElectricityProviderData = data;
 
                 $('#electricityproviderlist').empty();
                 var i = 0;
                 $('#electricityproviderlist').append($('<option>').text($scope.electricityprovidertext).attr('value', ""));
                 for (i = 0; i < data.length; i++) {
                     $('#electricityproviderlist').append($('<option>').text(data[i].name).attr('value', data[i].id));
+                    $scope.ElectricityProviderData.push(data[i]);
                 }
 
 
@@ -179,22 +267,31 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         });
     }
 
-   
 
- 
+
+
 
 
 
     $('#electricityproviderlist').on('change', function () {
         var electricityid = $('#electricityproviderlist option:selected').val();
- 
+
+
+
         $.ajax({
             type: "GET",
             dataType: "json",
 
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid,
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + 'e14hj',
+
+
+
+            //  url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid,
             contentType: "application/json; charset=utf-8",
-            success: function (tarrif) { 
+            success: function (tarrif) {
+
+
+                debugger;
                 $('#tarriflist').empty();
                 var i = 0;
                 $('#tarriflist').append($('<option>').text($scope.providertext).attr('value', ""));
@@ -204,10 +301,10 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             },
             error: function (xhr, status) {
 
-          
-           
 
-              
+
+
+
             }
         });
 
@@ -215,23 +312,23 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
 
 
-    $scope.getselectedtariff = function ()
-    {
+    $scope.getselectedtariff = function () {
 
-       
-        var electricityid = $scope.household.electricityprovider;
+
+        var electricityid = $scope.GetElectricityValue($scope.household.electricityprovider);
 
         $.ajax({
             type: "GET",
             dataType: "json",
 
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid,
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + 'e14hj',
             contentType: "application/json; charset=utf-8",
             success: function (tarrif) {
                 $('#tarriflist').empty();
                 var i = 0;
                 for (i = 0; i < tarrif.listTariff.length; i++) {
                     $('#tarriflist').append($('<option>').text(tarrif.listTariff[i].name).attr('value', tarrif.listTariff[i].id));
+                    $scope.TariffData.push(data[i]);
                 }
 
                 $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
@@ -239,7 +336,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             error: function (xhr, status) {
 
 
-              
+
 
 
             }
@@ -249,15 +346,15 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
 
 
-   
 
 
 
-  
+
+
     $scope.saveproperty = function () {
 
 
-  
+
 
         var URL = "";
         var MethodTYPE = ""
@@ -276,10 +373,9 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
         }
 
-     
 
-        if ($("#Propertytypelist").val() != "")
-        {
+
+        if ($("#Propertytypelist").val() != "") {
             $.ajax({
                 url: URL,
                 type: MethodTYPE,
@@ -332,8 +428,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                         });
                     }
 
-                    if ($("#electricityproviderlist").val() == "" || $("#tarriflist").val() == "")
-                    {
+                    if ($("#electricityproviderlist").val() == "" || $("#tarriflist").val() == "") {
                         log.info("Electricity provider is not updating");
                     }
 
@@ -350,22 +445,24 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 }
             })
         }
-     
-    
+
+
 
     }
 
 
     setTimeout(function () {
+
         $('#Propertytypelist option[value="' + $scope.household.propertytype + '"]').prop('selected', true);
-        $('#electricityproviderlist option[value="' + $scope.household.electricityprovider + '"]').prop('selected', true);
-        $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
+        $scope.electricityproviderlistvalue = $scope.GetElectricityValue($scope.household.electricityprovider);
+        $('#electricityproviderlist option[value="' + $scope.electricityproviderlistvalue + '"]').prop('selected', true);
+        $scope.Tariffvalue = $scope.GetTariffValue($scope.household.tarrif);
+        $('#tarriflist option[value="' + $scope.Tariffvalue + '"]').prop('selected', true);
+        $scope.getselectedtariff();
         $scope.$apply();
-        $('.mobileSelect').mobileSelect();
-    }, 2000);
 
+    }, 3000);
 
-   
     $(".languagechanger").click(function () {
         $scope.getpropertyvalue()
         $scope.getpropertytype()
@@ -373,18 +470,21 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
         setTimeout(function () {
             $('#Propertytypelist option[value="' + $scope.household.propertytype + '"]').prop('selected', true);
-            $('#electricityproviderlist option[value="' + $scope.household.electricityprovider + '"]').prop('selected', true);
-            $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
+            $scope.electricityproviderlistvalue = $scope.GetElectricityValue($scope.household.electricityprovider);
+            $('#electricityproviderlist option[value="' + $scope.electricityproviderlistvalue + '"]').prop('selected', true);
+            $scope.Tariffvalue = $scope.GetTariffValue($scope.household.tarrif);
+            $('#tarriflist option[value="' + $scope.Tariffvalue + '"]').prop('selected', true);
             $scope.$apply();
-         
+
         }, 2000);
 
     });
 
+    $scope.getpostcode();
     $scope.getpropertyvalue();
     $scope.getpropertytype();
-    $scope.getelectricityprovider();
 
-  
+
+
 }]);
 
