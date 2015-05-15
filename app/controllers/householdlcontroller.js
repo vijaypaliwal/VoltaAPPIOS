@@ -62,8 +62,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             success: function (json) {
 
 
-                debugger;
-
                 var data = json.length == 0 ? null : json[json.length - 1];
 
 
@@ -99,13 +97,9 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 }
 
 
-
-                debugger;
-
             },
             error: function (xhr, status) {
 
-                debugger;
                 log.error(xhr)
 
 
@@ -150,16 +144,13 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
     $scope.getareacode = function () {
 
-
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/postcode/' + "e14hj",
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/postcode/' + $scope.postcode,   
             contentType: "application/json; charset=utf-8",
             success: function (data) {
 
-
-                debugger;
 
                 $scope.areacode = data.areaCode;
                 $scope.$apply();
@@ -171,10 +162,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
             },
             error: function (xhr, status) {
-
-
-                debugger;
-
 
 
             }
@@ -221,11 +208,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
                 }
 
-
-
-
-
-                debugger;
 
 
 
@@ -290,8 +272,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             contentType: "application/json; charset=utf-8",
             success: function (tarrif) {
 
-
-                debugger;
                 $('#tarriflist').empty();
                 var i = 0;
                 $('#tarriflist').append($('<option>').text($scope.providertext).attr('value', ""));
@@ -400,7 +380,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     }
 
 
-                    debugger;
+                 
                     if ($("#electricityproviderlist").val() != "" && $("#tarriflist").val() != "") {
                         $.ajax({
                             url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property/' + response.id + '/tariff/' + $("#tarriflist").val(),
@@ -414,8 +394,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                             contentType: "application/json; charset=utf-8",
                             success: function (response, status) {
 
-
-                                debugger;
 
                             },
                             error: function (err) {
