@@ -1,10 +1,8 @@
-﻿
+
 'use strict';
 
 app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStorageService', '$location', 'log', function ($scope, $http, authService, localStorageService, $location, log) {
 
-
-    debugger;
     $scope.authentication = authService.authentication.isAuth;
     $scope.userid = authService.authentication.userId;
     $scope.sensorId = authService.authentication.sensorId;
@@ -22,10 +20,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $scope.sid = authData.sid;
 
     $scope.rememberme = authData.remember;
-
-
-
-
 
 
     $scope.furl = 'http://54.154.64.51:8080/voltaware/v1.0/' + 'user/' + $scope.uid + '/sensor/' + $scope.sid + '/powerinfo/graphtoday';
@@ -60,7 +54,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $scope.myculture = function (culture) {
 
 
-
         if (culture == 'it') {
 
 
@@ -75,6 +68,15 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             if (newarray[1] == "Mar") {
                 newarray[1] = "Март";
             }
+
+            if (newarray[1] == "May") {
+                newarray[1] = "май";
+            }
+
+            if (newarray[1] == "Jun") {
+                newarray[1] = "Июнь";
+            }
+
             if (newarray[4] == "am") {
                 newarray[4] = "я";
             }
@@ -89,6 +91,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
         else {
 
+
             $("#CurrentDate").html("<b>" + moment(new Date()).format("DD MMM YYYY h:mm a") + "</b>");
 
         }
@@ -97,11 +100,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     }
 
 
-
     var twoyearago = new Date();
     twoyearago.setDate(twoyearago.getDate() - 730);
-
-
 
 
 
@@ -238,7 +238,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
             $(".loader").hide();
 
-            debugger;
+         
 
             log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
         });
@@ -315,8 +315,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             });
 
 
-            var currentusage = (data.power) * 100
-            document.getElementById("currentusage").innerHTML = currentusage.toFixed(2);
+            var currentusage = (data.power) * 1
+            document.getElementById("currentusage").innerHTML = currentusage.toFixed(4) + ' ';
 
 
 
@@ -423,7 +423,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         }).error(function (xhr, error, errorStatus, responseText) {
 
             $(".loader").hide();
-            debugger;
+         
 
             log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
 
@@ -443,10 +443,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             'Authorization': 'Bearer ' + $scope.AuthToken
         },
         success: function (json) {
-
-
-
-            debugger;
 
 
             var data = json.length == 0 ? null : json[json.length - 1];
@@ -494,12 +490,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         error: function (xhr, status) {
 
 
-
-
-            debugger;
-
-
-
         }
     });
 
@@ -518,8 +508,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             },
             success: function (response) {
 
-          
-                debugger;
 
                 $scope.percentage = response.percentage;
                 $scope.householdpercentage = response.percentegeHousehold;
@@ -541,7 +529,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
     $scope.flagposition = function () {
 
-        debugger;
+      
         if ($scope.percentage < -10 && $scope.percentage > -50) {
 
             $(".flag1").show()
@@ -577,8 +565,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             $(".flag9").show()
         }
 
-
-
     }
 
 
@@ -586,13 +572,10 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
         $http.get($scope.todayurl, null, { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + $scope.AuthToken } }).success(function (data) {
 
-            var todayvalue = (data.power) * 100
-            document.getElementById("today").innerHTML = todayvalue.toFixed(2);
-
-
+            var todayvalue = (data.power.power) * 1
+            document.getElementById("today").innerHTML = todayvalue.toFixed(4) + ' ';
 
         }).error(function (xhr, error, errorStatus, responseText) {
-
 
 
         });
@@ -605,7 +588,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             var todayavgvalue = (data.power) * 100
             document.getElementById("todayavg").innerHTML = todayavgvalue.toFixed(3);
 
-            debugger;
+        
 
             $scope.todayvalue = todayavgvalue;
 
@@ -853,7 +836,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "6month":
-                    debugger;
+                 
                     $scope.graphstep = 1;
                     var predate = $scope.previousdate;
                     var pd = new Date(predate);
@@ -976,8 +959,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         }).error(function (xhr, error, errorStatus, responseText) {
 
 
-
-            debugger;
 
             log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
         });
@@ -1132,8 +1113,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     };
 
     $scope.getonedayback = function () {
-
-        debugger;
 
         var onedayAgo = new Date();
         var onedaybefore = new Date();
@@ -1347,8 +1326,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     else {
 
 
-                        debugger;
-
                         //   log.info("can't go forward any further");
                         $("#rightarrow").hide()
 
@@ -1410,7 +1387,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 $scope.daystoIncrease = $scope.daystoIncrease - 7;
                 onedayafter = onedayafter.setDate(onedayafter.getDate() - $scope.daystoIncrease);
 
-                debugger;
 
                 onedaybefore = onedaybefore.setDate(onedaybefore.getDate() - ($scope.daystoIncrease - 7))
 
@@ -1542,8 +1518,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             success: function (response, status) {
 
 
-                debugger;
-
                 $scope.firsttip = response[0].engTip;
                 $scope.secondtip = response[1].engTip;
                 $scope.thirdtip = response[2].engTip;
@@ -1571,8 +1545,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             },
             error: function (err) {
 
-
-                debugger;
 
             }
         })
