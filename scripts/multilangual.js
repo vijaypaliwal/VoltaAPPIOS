@@ -21,7 +21,7 @@ app.config(function ($translateProvider) {
         Utilisationtoday: 'Utilisation today',
         Currentutilisation: 'Current utilisation',
         Youhaveused: 'you have used',
-        Sofartoday: 'so far today',
+        Sofartoday: 'since Midnight',
         Wholehouse: 'Whole house',
         Avgweekdayutilisation: 'Average weekday utilisation',
         Expectedutilisationtoday: 'Expected utilisation today',
@@ -102,7 +102,7 @@ app.config(function ($translateProvider) {
         offpeak: 'Off Peak',
         saver: 'Saver',
         monitorhistory: 'Monitor history',
-        usedsofartoday: 'used so far today',
+        usedsofartoday: 'used since Midnight',
         changeyourpassword: 'Change your password',
         usebelowform: 'Please use the form below to change your password',
         update: 'Update',
@@ -116,7 +116,6 @@ app.config(function ($translateProvider) {
         bed: 'bed',
         other: 'Other'
     })
-
         //Russian Translation
     .translations('it', {
         Logintext: 'Логин',
@@ -234,13 +233,9 @@ app.config(function ($translateProvider) {
         inyourneighbour: 'в вашем районе',
         bed: 'кровать',
         other: 'другой',
-
-
     })
 
     .translations('sp', {
-
-
         Logintext: 'Iniciar Sesión',
         Signuptext: 'Contratar',
         Logindescription: 'Si usted tiene correo electrónico y la contraseña , puede utilizar el botón de abajo para acceder al contenido protegido mediante un token',
@@ -357,5 +352,7 @@ app.config(function ($translateProvider) {
         bed: 'cama',
         other: 'otro',
     });
+
+
     $translateProvider.preferredLanguage('en');
 });
