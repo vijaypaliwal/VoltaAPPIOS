@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', function ($scope, log, localStorageService) {
 
     var authData = localStorageService.get('authorizationData');
@@ -30,8 +30,8 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         numberofchildren: "",
         numberofrooms: "",
         propertytypeid: 0,
-        propertytypename:"",
-     
+        propertytypename: "",
+
     };
 
     $scope.currentselectedlanguage = "en"
@@ -43,7 +43,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         url: 'http://54.154.64.51:8080/voltaware/v1.0/me',
         type: "GET",
         accept: "application/json",
-    
+
         headers: {
             'Authorization': 'Bearer ' + $scope.AuthToken
         },
@@ -51,11 +51,10 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         contentType: "application/json; charset=utf-8",
         success: function (response, status) {
 
-            debugger;
             $scope.account.firstname = response.firstName;
             $scope.account.lastname = response.lastName;
             $scope.account.title = response.title;
-          //  document.getElementById("titlelist").value = $scope.account.title;
+            //  document.getElementById("titlelist").value = $scope.account.title;
 
             $('#titlelist option[value="' + $scope.account.title + '"]').prop('selected', true);
             $scope.$apply();
@@ -65,8 +64,6 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
             log.error("Error::" + err.statusText);
-
-            debugger;
 
 
         }
@@ -85,64 +82,57 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         success: function (json) {
 
 
+            var data = json.length == 0 ? null : json[json.length - 1];
 
-            debugger;
+            $scope.account.accountnumber = data.sensor.serialNumber;
 
-       
-               var data = json.length == 0 ? null : json[json.length - 1];
-         
-
-        
-                if (data != null) {
-                    $scope.account.numberofadults = data.numberAdults;
-                    $scope.account.numberofchildren = data.numberChildren;
-                    $scope.account.numberofrooms = data.numberBedrooms;
-                    $scope.account.propertytypeid = data.id;
-                    $scope.$apply();
-                }
+            if (data != null) {
+                $scope.account.numberofadults = data.numberAdults;
+                $scope.account.numberofchildren = data.numberChildren;
+                $scope.account.numberofrooms = data.numberBedrooms;
+                $scope.account.propertytypeid = data.id;
+                $scope.account.accountnumber = data.sensor.serialNumber
+                $scope.$apply();
+            }
 
 
-                if (data.propertyType != null) {
-               
-                    $scope.account.propertytypename = data.propertyType.name;
-                    $scope.$apply();
+            if (data.propertyType != null) {
 
-                }
+                $scope.account.propertytypename = data.propertyType.name;
+                $scope.$apply();
 
-
-                if (data.address != null) {
-
-                    $scope.account.housename = data.address.houseNumber;
-                    $scope.account.address1 = data.address.addressLine1;
-                    $scope.account.address2 = data.address.addressLine2;
-                    $scope.account.town = data.address.city;
-                    $scope.account.region = data.address.region;
-                    $scope.account.country = data.address.country;
-                    $scope.account.post = data.address.postcode;
-                    
-                    $scope.$apply();
-                }
+            }
 
 
-                if (data.propertyType == null)
-                {
-                
+            if (data.address != null) {
+
+                $scope.account.housename = data.address.houseNumber;
+                $scope.account.address1 = data.address.addressLine1;
+                $scope.account.address2 = data.address.addressLine2;
+                $scope.account.town = data.address.city;
+                $scope.account.region = data.address.region;
+                $scope.account.country = data.address.country;
+                $scope.account.post = data.address.postcode;
 
 
-                    $scope.editmode = false;   
-                    $scope.$apply();
-                }
+                $scope.$apply();
+            }
 
-          
-          
+
+            if (data.propertyType == null) {
+
+
+
+                $scope.editmode = false;
+                $scope.$apply();
+            }
+
+
+
 
         },
         error: function (xhr, status) {
 
-
-         
-
-            debugger;
             log.error(xhr)
 
 
@@ -153,8 +143,8 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
     $scope.updateprofile = function () {
 
-    
-   $.ajax({
+
+        $.ajax({
             url: 'http://54.154.64.51:8080/voltaware/v1.0/users/' + $scope.uid,
             type: "PUT",
             accept: "application/json",
@@ -167,18 +157,12 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
             success: function (response, status) {
 
 
-
-
-
-            
-                
-
             },
             error: function (xhr) {
 
 
                 if (xhr.status == 200 && xhr.status < 300) {
-                  
+
                 }
 
                 else {
@@ -187,101 +171,91 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
             }
-   })
+        })
 
 
 
 
-   if ($scope.editmode == false) {
+        if ($scope.editmode == false) {
 
-   $.ajax({
-       url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property',
-       type: "POST",
-       accept: "application/json",
-       //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
-       data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": $scope.account.accountnumber } }),
-       headers: {
-           'Authorization': 'Bearer ' + $scope.AuthToken
-       },
-       dataType: "json",
-       contentType: "application/json; charset=utf-8",
-       success: function (response, status) {
-
-
-       
-           if ($scope.currentselectedlanguage == "it") {
-
-               log.info("Банковские реквизиты успешно обновлены");
-
-           }
-           else {
-
-               log.info("Account details updated successfully");
-
-           }
-
-       },
-       error: function (err) {
-
-      
-           debugger;
-
-
-           log.error("Error::" + err.statusText);
-
-
-       }
-   })
-
-   }
-
-
-   if ($scope.editmode == true) {
-
-
-   
-       $.ajax({
-           url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property/' + $scope.account.propertytypeid,
-           type: "PUT",
-           accept: "application/json",
-           //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
-           data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": $scope.account.accountnumber } }),
-           headers: {
-               'Authorization': 'Bearer ' + $scope.AuthToken
-           },
-           dataType: "json",
-           contentType: "application/json; charset=utf-8",
-           success: function (response, status) {
+            $.ajax({
+                url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property',
+                type: "POST",
+                accept: "application/json",
+                //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
+                data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": $scope.account.accountnumber } }),
+                headers: {
+                    'Authorization': 'Bearer ' + $scope.AuthToken
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response, status) {
 
 
 
-               if ($scope.currentselectedlanguage == "it") {
+                    if ($scope.currentselectedlanguage == "it") {
 
-                   log.info("Банковские реквизиты успешно обновлены");
+                        log.info("Банковские реквизиты успешно обновлены");
 
-               }
-               else {
+                    }
+                    else {
 
-                   log.info("Account details updated successfully");
+                        log.info("Account details updated successfully");
 
-               }
+                    }
 
-           },
-           error: function (err) {
-
-
-               debugger;
+                },
+                error: function (err) {
 
 
-               log.error("Error::" + err.statusText);
+
+                    log.error("Error::" + err.statusText);
 
 
-           }
-       })
+                }
+            })
 
-   }
+        }
 
-   }
+
+        if ($scope.editmode == true) {
+
+
+
+            $.ajax({
+                url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property/' + $scope.account.propertytypeid,
+                type: "PUT",
+                accept: "application/json",
+                //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
+                data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": $scope.account.accountnumber } }),
+                headers: {
+                    'Authorization': 'Bearer ' + $scope.AuthToken
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response, status) {
+
+                    if ($scope.currentselectedlanguage == "it") {
+
+                        log.info("Банковские реквизиты успешно обновлены");
+
+                    }
+                    else {
+                        log.info("Account details updated successfully");
+
+                    }
+
+                },
+                error: function (err) {
+
+                    log.error("Error::" + err.statusText);
+
+                }
+            })
+
+        }
+
+    }
 
 }]);
 
