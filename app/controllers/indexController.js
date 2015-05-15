@@ -1,4 +1,4 @@
-﻿var selectedlanguage = "";
+var selectedlanguage = "";
 
 'use strict';
 
@@ -50,10 +50,6 @@ app.controller('indexController', ['$scope', '$location', 'authService', 'log', 
         $translate.use("en");
 
     }
-
-
-
-
 
 
     $scope.changeLanguage = function (langKey) {
