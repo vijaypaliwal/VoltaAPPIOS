@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', 'log', '$remember', function ($http, $q, localStorageService, ngAuthSettings, log, $remember) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
@@ -67,7 +67,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                     success: function (response1, status)
 
                     {
-                        debugger;
                         
                         _authentication.sensorId = response1.id;
 
@@ -125,7 +124,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
             success: function (response, status)
             {
 
-                debugger;
 
                    $(".loader").show();
                    $(".logintext").hide();
@@ -155,11 +153,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                         dataType: "json",
                         success: function (response2, status) {
 
-
-                      
-
-                            debugger;
-
                             myusername = response2.emailAddress;
                             mypassword = loginData.password;
                             if (loginData.remember == true) {
@@ -180,8 +173,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                         error: function (err) {
 
                          
-                            alert("Error User info");
-                            debugger;
+                      
 
 
                             return err;
@@ -208,7 +200,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
                                       //alert("Sensor Get success");
 
-                                      debugger;
+                                 
 
 
 
@@ -216,7 +208,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
                                   },
                                   error: function (err) {
 
-                                      debugger;
+                                 
 
 
 
@@ -230,7 +222,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
                                 setTimeout(function () { localStorageService.set('authorizationData', { token: response.access_token, uid: _authentication.userId, sid: _authentication.sensorId, userName: loginData.userName, remember: _authentication.remember, refreshToken: response.refresh_token, useRefreshTokens: true, expireIn: response.expires_in, name: _authentication.name }); }, 1000);
 
-                                debugger;
+                             
                          
                             });
 
@@ -264,7 +256,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     // LogOut function
     var _logOut = function () {
 
-        debugger;
+     
 
         if (_authentication.remember == false)
         {
@@ -303,19 +295,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         }
 
-     
-
-     
-
-      
-
     };
 
     var _fillAuthData = function () {
 
         var authData = localStorageService.get('authorizationData');
         
-        debugger;
+    
         if (authData) {
             _authentication.isAuth = true;
             _authentication.remember = authData.remember;
