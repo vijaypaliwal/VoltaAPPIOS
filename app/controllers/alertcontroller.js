@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', function ($scope, log, localStorageService) {
 
     var authData = localStorageService.get('authorizationData');
@@ -47,7 +47,6 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
             contentType: "application/json; charset=utf-8",
             success: function (response, status) {
 
-                debugger;
 
                 var data = response.length == 0 ? null : response[response.length - 1];
 
