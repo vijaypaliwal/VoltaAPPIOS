@@ -11,7 +11,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
     setInterval(function () {
 
         $scope.currentselectedlanguage = selectedlanguage
-
         if (selectedlanguage == "it") {
             $scope.selectpropertytext = "выбрать Тип жилья";
             $scope.electricityprovidertext = "выбрать Энергопровайдер"
@@ -21,7 +20,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         else {
             $scope.selectpropertytext = "Select property type";
             $scope.electricityprovidertext = "Select electricity provider"
-            $scope.providertext = "Select your provider"
+            $scope.providertext = "Select your Tariff"
         }
     }, 100);
 
@@ -97,12 +96,10 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 }
 
 
+
             },
             error: function (xhr, status) {
-
                 log.error(xhr)
-
-
             }
         });
 
@@ -119,6 +116,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 'Authorization': 'Bearer ' + $scope.token
             },
             success: function (json) {
+
+
 
                 var data = json.length == 0 ? null : json[json.length - 1];
 
@@ -137,6 +136,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             },
             error: function (xhr, status) {
 
+
+
                 log.error(xhr)
             }
         });
@@ -147,7 +148,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/postcode/' + $scope.postcode,   
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/postcode/' + $scope.postcode,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
 
@@ -191,6 +192,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
         }
     }
+
+
     $scope.getpropertytype = function () {
         $.ajax({
             type: "GET",
@@ -207,9 +210,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     $('#Propertytypelist').append($('<option>').text(json[i].name).attr('value', json[i].id));
 
                 }
-
-
-
 
             },
             error: function (xhr, status) {
@@ -245,6 +245,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
 
 
+
+
             }
         });
     }
@@ -258,19 +260,19 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
     $('#electricityproviderlist').on('change', function () {
         var electricityid = $('#electricityproviderlist option:selected').val();
 
-
-
         $.ajax({
             type: "GET",
             dataType: "json",
 
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + 'e14hj',
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
 
 
 
             //  url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid,
             contentType: "application/json; charset=utf-8",
             success: function (tarrif) {
+
+
 
                 $('#tarriflist').empty();
                 var i = 0;
@@ -301,24 +303,39 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             type: "GET",
             dataType: "json",
 
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + 'e14hj',
+            url: 'http://54.154.64.51:8080/voltaware/v1.0/electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
             contentType: "application/json; charset=utf-8",
             success: function (tarrif) {
                 $('#tarriflist').empty();
                 var i = 0;
                 for (i = 0; i < tarrif.listTariff.length; i++) {
                     $('#tarriflist').append($('<option>').text(tarrif.listTariff[i].name).attr('value', tarrif.listTariff[i].id));
-                    $scope.TariffData.push(data[i]);
+                    //  $scope.TariffData.push(data[i]);
                 }
 
-                $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
+                //   $('#tarriflist option[value="' + $scope.household.tarrif + '"]').prop('selected', true);
+
+
+                //    $("#tarriflist option:contains(" + $scope.household.tarrif + ")").attr('selected', 'selected');
+
+
+
+
+                var text1 = $scope.household.tarrif;
+                $("#tarriflist option").filter(function () {
+                    //may want to use $.trim in here
+                    return $(this).text() == text1;
+                }).prop('selected', true);
+
+                $scope.$apply();
+
+
             },
             error: function (xhr, status) {
 
 
 
-
-
+                $(".postcodeerror").show()
             }
         });
     }
@@ -380,7 +397,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     }
 
 
-                 
+
                     if ($("#electricityproviderlist").val() != "" && $("#tarriflist").val() != "") {
                         $.ajax({
                             url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property/' + response.id + '/tariff/' + $("#tarriflist").val(),
@@ -393,6 +410,9 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                             dataType: "json",
                             contentType: "application/json; charset=utf-8",
                             success: function (response, status) {
+
+
+
 
 
                             },
@@ -461,7 +481,6 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
     $scope.getpostcode();
     $scope.getpropertyvalue();
     $scope.getpropertytype();
-
 
 
 }]);
