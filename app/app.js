@@ -1,4 +1,4 @@
-
+﻿
 var app = angular.module('AngularAuthApp', ['ngRoute', 'ui.bootstrap', 'LocalStorageModule', 'angular-loading-bar', 'pascalprecht.translate', 'bootstrap-switch']);
 
 
@@ -63,7 +63,8 @@ app.config(function ($routeProvider) {
 });
 
 // Common URL of All API
-var serviceBase = 'http://54.154.64.51:8080/voltaware/';
+var serviceBase = 'http://restapi.voltaware.com:8080/voltaware/';
+var mainServicebase = 'http://restapi.voltaware.com:8080/voltaware/v1.0/'
 
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,

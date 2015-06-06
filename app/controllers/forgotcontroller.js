@@ -1,7 +1,7 @@
 
 'use strict';
 
-var passwordURL = "http://54.154.64.51:8080/voltaware/v1.0/password/tokens"
+var passwordURL = mainServicebase + "password/tokens"
 
 app.controller('forgotcontroller', ['$scope', '$http', 'log', '$location', function ($scope, $http, log, $location) {
     $scope.message = 'Home';

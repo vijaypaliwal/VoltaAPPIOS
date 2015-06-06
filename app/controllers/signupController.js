@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 app.controller('signupController', ['$scope', '$location', 'authService', 'ngAuthSettings', '$interval', 'localStorageService', 'log', function ($scope, $location, authService, ngAuthSettings, $interval, localStorageService, log) {
 
     $scope.savedSuccessfully = false;
@@ -25,13 +25,13 @@ app.controller('signupController', ['$scope', '$location', 'authService', 'ngAut
             $scope.savedSuccessfully = true;
             $scope.message = "User has been registered successfully, you will be redicted to dashboard page in 3 seconds.";
         
-
             startTimer();
-            $location.path('/graph');
+         
 
             setTimeout(function () {
                 $(".loader").hide();
                 $(".submittext").show();
+                $location.path('/account');
             }, 2000);
 
         },

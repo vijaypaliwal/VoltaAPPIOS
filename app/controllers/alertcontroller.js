@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', function ($scope, log, localStorageService) {
 
     var authData = localStorageService.get('authorizationData');
@@ -19,7 +19,7 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
         computers: false,
         light: false,
         emailAlert: $scope.email
-     
+
     };
 
 
@@ -33,65 +33,61 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
         $("#CurrentDate").html("<b>" + moment(new Date()).format("MMM DD YYYY,h:mm:ss a") + "</b>");
     }
 
-     
 
-        $.ajax({
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/alert',
-            type: "GET",
-            accept: "application/json",
-            headers: {
-                'Authorization': 'Bearer ' + $scope.AuthToken
-            },
-        
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (response, status) {
+    $.ajax({
+        url: mainServicebase + 'user/' + $scope.uid + '/alert',
+        type: "GET",
+        accept: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + $scope.AuthToken
+        },
 
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (response, status) {
+            debugger;
+            var data = response.length == 0 ? null : response[response.length - 1];
 
-                var data = response.length == 0 ? null : response[response.length - 1];
+            if (data != null) {
+                $scope.alert.ID = data.id;
+                $scope.alert.hourMax = data.hourMax;
+                $scope.alert.highusagehr = data.hourAlert;
+                $scope.alert.highusageday = data.dayAlert;
+                $scope.alert.emailAlert = data.emailAlert;
 
-                if (data != null) {
-                    $scope.alert.highusagehr = data.hourAlert;
-                    $scope.alert.highusageday = data.dayAlert;
-                    $scope.alert.emailAlert = data.emailAlert;
-
-                    $scope.$apply();
-                }
-
-        
-
-       
-                
-
-            },
-            error: function (err) {
-
-          
-
-               
-
-
+                $scope.$apply();
             }
-        })
-  
 
 
-        $scope.savealert = function () {
+        },
+        error: function (err) {
 
-     
+
+
+
+
+
+        }
+    })
+
+
+
+    $scope.savealert = function () {
+
+
 
         $.ajax({
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/alert',
-            type: "POST",
+            url: mainServicebase + 'user/' + $scope.uid + '/alert/' + $scope.alert.ID,
+            type: "PUT",
             accept: "application/json",
-            data: JSON.stringify({ "hourAlert": $scope.alert.highusagehr, "dayAlert": $scope.alert.highusageday, "emailAlert" : $scope.alert.emailAlert }),
+            data: JSON.stringify({ "hourAlert": $scope.alert.highusagehr, "dayAlert": $scope.alert.highusageday, "emailAlert": $scope.alert.emailAlert, "dayMax": 10.0, "hourMax": $scope.alert.hourMax }),
             headers: {
                 'Authorization': 'Bearer ' + $scope.AuthToken
             },
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response, status) {
-
+                debugger;
                 if ($scope.currentselectedlanguage == "it") {
 
                     log.info("Предупреждение успешно добавлен");
@@ -102,10 +98,6 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
                     log.info("Alert Added Successfully");
 
                 }
-            
-
-             
-            
 
             },
             error: function (err) {
@@ -113,19 +105,19 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
 
                 log.error("Error::" + err.statusText);
 
-            
+
 
 
             }
         })
 
-        }
+    }
 
 
-    
-    
 
-        
+
+
+
 
 
 }]);

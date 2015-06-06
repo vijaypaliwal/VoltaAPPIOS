@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 app.controller('refreshController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
 
     $scope.authentication = authService.authentication;

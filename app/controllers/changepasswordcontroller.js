@@ -1,7 +1,7 @@
-
+﻿
 'use strict';
 
-var ChangepasswordURL = "http://54.154.64.51:8080/voltaware/v1.0/users/"
+var ChangepasswordURL = mainServicebase + "users/"
 
 
 
@@ -86,11 +86,15 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
                         log.error("some thing went wrong please try again")
                     }
 
+
                 }
             })
         }
     
+ 
         else {
+
+         
 
             log.error("The passwords you have entered do not match -please re-enter both.")
             $scope.cp.newpassword = "";
@@ -98,6 +102,8 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
             $scope.$apply();
 
         }
+      
+     
     };
 
  

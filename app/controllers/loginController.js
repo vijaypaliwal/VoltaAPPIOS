@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuthSettings', '$interval', 'localStorageService', 'log', function ($scope, $location, authService, ngAuthSettings, $interval, localStorageService, log) {
 
     $scope.loginData = {

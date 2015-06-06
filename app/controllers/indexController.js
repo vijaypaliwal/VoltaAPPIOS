@@ -1,4 +1,4 @@
-var selectedlanguage = "";
+﻿var selectedlanguage = "";
 
 'use strict';
 

@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', function ($scope, log, localStorageService) {
 
     var authData = localStorageService.get('authorizationData');
@@ -9,7 +9,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
     $scope.uid = authData.uid;
     $scope.AuthToken = authData.token;
 
-
+    console.log("Current Token at account controller" + $scope.AuthToken);
     $scope.editmode = true;
 
 
@@ -33,14 +33,13 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         propertytypename: "",
 
     };
-
     $scope.currentselectedlanguage = "en"
 
     setInterval(function () { $scope.currentselectedlanguage = selectedlanguage }, 500);
 
 
     $.ajax({
-        url: 'http://54.154.64.51:8080/voltaware/v1.0/me',
+        url: mainServicebase + 'me',
         type: "GET",
         accept: "application/json",
 
@@ -51,9 +50,12 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         contentType: "application/json; charset=utf-8",
         success: function (response, status) {
 
+            console.log(response);
             $scope.account.firstname = response.firstName;
             $scope.account.lastname = response.lastName;
             $scope.account.title = response.title;
+
+
             //  document.getElementById("titlelist").value = $scope.account.title;
 
             $('#titlelist option[value="' + $scope.account.title + '"]').prop('selected', true);
@@ -66,6 +68,8 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
             log.error("Error::" + err.statusText);
 
 
+
+
         }
     })
 
@@ -74,7 +78,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property',
+        url: mainServicebase + 'user/' + $scope.uid + '/property',
         contentType: "application/json; charset=utf-8",
         headers: {
             'Authorization': 'Bearer ' + $scope.AuthToken
@@ -82,16 +86,21 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         success: function (json) {
 
 
+            debugger;
+
+
+            console.log("account data with JSON");
+            console.log(json);
+
             var data = json.length == 0 ? null : json[json.length - 1];
 
-            $scope.account.accountnumber = data.sensor.serialNumber;
+
 
             if (data != null) {
                 $scope.account.numberofadults = data.numberAdults;
                 $scope.account.numberofchildren = data.numberChildren;
                 $scope.account.numberofrooms = data.numberBedrooms;
                 $scope.account.propertytypeid = data.id;
-                $scope.account.accountnumber = data.sensor.serialNumber
                 $scope.$apply();
             }
 
@@ -102,7 +111,6 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 $scope.$apply();
 
             }
-
 
             if (data.address != null) {
 
@@ -115,15 +123,22 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 $scope.account.post = data.address.postcode;
 
 
+                $scope.account.accountnumber = data.sensor.serialNumber;
+                $("#accountbox").attr("disabled", "disabled");
+
+
                 $scope.$apply();
             }
 
 
-            if (data.propertyType == null) {
-
-
+            if (data.address == null) {
 
                 $scope.editmode = false;
+
+            }
+
+
+            if (data.propertyType == null) {
                 $scope.$apply();
             }
 
@@ -133,6 +148,10 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         },
         error: function (xhr, status) {
 
+
+
+
+
             log.error(xhr)
 
 
@@ -141,11 +160,18 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
 
+    $scope.CheckValidPostAndCity = function () {
+        if ($scope.account.post != undefined && $.trim($scope.account.post) != "" && $scope.account.town != undefined && $.trim($scope.account.town) != "") {
+            return true;
+        }
+        return false;
+    }
+
     $scope.updateprofile = function () {
 
 
         $.ajax({
-            url: 'http://54.154.64.51:8080/voltaware/v1.0/users/' + $scope.uid,
+            url: mainServicebase + 'users/' + $scope.uid,
             type: "PUT",
             accept: "application/json",
             data: JSON.stringify({ "firstName": $scope.account.firstname, "lastName": $scope.account.lastname, "emailAddress": $scope.account.email, "title": $("#titlelist option:selected").text() }),
@@ -156,13 +182,34 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
             contentType: "application/json; charset=utf-8",
             success: function (response, status) {
 
+                if ($scope.currentselectedlanguage == "it") {
+
+                    log.info("Демографические обновлена ​​информация успешно");
+
+                }
+                else {
+
+                    log.info("Demographic details Updated successfully");
+
+                }
+
+
 
             },
             error: function (xhr) {
 
 
                 if (xhr.status == 200 && xhr.status < 300) {
+                    if ($scope.currentselectedlanguage == "it") {
 
+                        log.info("Демографические обновлена ​​информация успешно");
+
+                    }
+                    else {
+
+                        log.info("Demographic details Updated successfully");
+
+                    }
                 }
 
                 else {
@@ -178,11 +225,13 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
         if ($scope.editmode == false) {
 
+
+
             $.ajax({
-                url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property',
+                url: mainServicebase + 'user/' + $scope.uid + '/property',
                 type: "POST",
                 accept: "application/json",
-                //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
+                //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "propertyType": { "id": $scope.account.propertytypeid, "name": $scope.account.propertytypename }, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
                 data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": $scope.account.accountnumber } }),
                 headers: {
                     'Authorization': 'Bearer ' + $scope.AuthToken
@@ -191,6 +240,8 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 contentType: "application/json; charset=utf-8",
                 success: function (response, status) {
 
+
+                    debugger;
 
 
                     if ($scope.currentselectedlanguage == "it") {
@@ -204,9 +255,12 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                     }
 
+
                 },
                 error: function (err) {
 
+
+                    debugger;
 
 
                     log.error("Error::" + err.statusText);
@@ -214,6 +268,9 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                 }
             })
+
+
+
 
         }
 
@@ -223,7 +280,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
             $.ajax({
-                url: 'http://54.154.64.51:8080/voltaware/v1.0/user/' + $scope.uid + '/property/' + $scope.account.propertytypeid,
+                url: mainServicebase + 'user/' + $scope.uid + '/property/' + $scope.account.propertytypeid,
                 type: "PUT",
                 accept: "application/json",
                 //data: JSON.stringify({ "numberBedrooms": $scope.account.numberofrooms, "numberAdults": $scope.account.numberofadults, "numberChildren": $scope.account.numberofchildren, "address": { "houseNumber": $scope.account.housename, "addressLine1": $scope.account.address1, "addressLine2": $scope.account.address2, "postcode": $scope.account.post, "region": $scope.account.region, "city": $scope.account.town, "country": $scope.account.country }, "sensor": { "serialNumber": "ABBB12509" } }),
@@ -235,20 +292,27 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 contentType: "application/json; charset=utf-8",
                 success: function (response, status) {
 
+
+
                     if ($scope.currentselectedlanguage == "it") {
 
                         log.info("Банковские реквизиты успешно обновлены");
 
                     }
                     else {
+
                         log.info("Account details updated successfully");
 
                     }
 
+
                 },
                 error: function (err) {
 
+
+
                     log.error("Error::" + err.statusText);
+
 
                 }
             })
