@@ -514,13 +514,43 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                 $scope.secondleft = (response.percentageSimilarHouse / 2) * 100;
 
-              
+                var myper = (response.percentage - 1) * 100;
 
-                $scope.percentage = response.percentage;
-                $scope.householdpercentage = response.percentegeHousehold;
-                $scope.basedonhistory = response.percentageSimilarHouse;
+                $scope.percentage = myper.toFixed(2);
+
+                if ($scope.percentage > 0) {
+                    $scope.lessmoretextforper = "Today you are using " + $scope.percentage + "% more electricity than you have previously used on average";
+                    $scope.righttextforhouse = "Did you know you can visit the Volta website for tips on reducing your electricity consumption"
+                }
+                else {
+                    $scope.lessmoretextforper = "Today you are using " + $scope.percentage * (-1) + "% less electricity than you have previously used on average";
+                    $scope.righttextforhouse = "Well done, you are reducing your electricity consumption";
+                }
+
+                //    var per = parseFloat(response.percentage);
+                //    $scope.percentage = per.toFixed(2);
+
+
+                //    $scope.householdpercentage = response.percentegeHousehold;
+
+                var mypersimilar = (response.percentageSimilarHouse - 1) * 100;
+
+                $scope.basedonhistory = mypersimilar.toFixed(2);
+
+                if ($scope.basedonhistory > 0) {
+                    $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory + "% more electricity than the average";
+                    $scope.righttextforsimilar = "Did you know you can visit the Volta website for tips on reducing your electricity consumption";
+                }
+                else {
+                    $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory * (-1) + "% less electricity than the average";
+                    $scope.righttextforsimilar = "Well done, your electricity consumption is less than the National Average";
+                }
+
+                //   var persimilar = parseFloat(response.percentageSimilarHouse);
+                //   $scope.basedonhistory = persimilar.toFixed(2);
+
+
                 $scope.$apply();
-                $scope.flagposition();
 
 
             },

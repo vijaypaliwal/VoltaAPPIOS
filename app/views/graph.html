@@ -48,9 +48,9 @@
             <div class="js-gauge js-gauge--1 gauge"></div>
 
             <!--<div style="width: 600px; height: 400px; margin: 0 auto">
-            <div id="container-speed" style="width: 300px; height: 200px;"></div>
-
-              </div>-->
+	       <div id="container-speed" style="width: 300px; height: 200px;"></div>
+	
+             </div>-->
         </div>
 
     </div>
@@ -78,11 +78,11 @@
     </div>
 
     <div class="col-md-9 col-xs-8">
-
-        <div style="font-size: 12px; color: #9599F8; margin-top: -7px; margin-left: {{marginleft}}%">
-            <span class="leftnow" style="font-size: 10px; margin-left: 9px; display: none;">{{ 'now' | translate }}</span> <i style="font-size: 20px; color: #777; margin-top: 5px; position: absolute" class="fa fa-arrows-v"></i><span class="rightnow" style="font-size: 10px; margin-left: 9px; display: none;">{{ 'now' | translate }}</span>
-        </div>
-
+    
+                <div style="font-size: 12px; color: #9599F8; margin-top: -7px; margin-left: {{marginleft}}%">
+                    <span class="leftnow" style="font-size: 10px; margin-left: 9px; display: none;">{{ 'now' | translate }}</span> <i style="font-size: 20px; color: #777; margin-top: 5px; position: absolute" class="fa fa-arrows-v"></i><span class="rightnow" style="font-size: 10px; margin-left: 9px; display: none;">{{ 'now' | translate }}</span>
+                </div>
+      
 
 
 
@@ -229,7 +229,7 @@
                                 </div>
                             </div>
 
-
+                        
                         </div>
                     </div>
 
@@ -256,7 +256,7 @@
 
                         </div>
                     </div>
-
+                    <br />
 
                     <div class="row">
                         <div class="col-md-5 col-xs-5">&nbsp;</div>
@@ -268,7 +268,7 @@
                                         <i style="text-align: center; color: #e99002" class="fa fa-flag"></i>
                                     </div>
                                 </div>
-
+                             
                             </div>
                         </div>
                     </div>
@@ -295,8 +295,8 @@
 
                         </div>
                     </div>
-
-
+                    
+                    
                 </div>
 
 
@@ -305,26 +305,38 @@
 
             <div class="swiper-slide">
 
-                <div class="well">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success">{{firsttip}}</a>
-                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-success">annotation</a>
                     </div>
-                    <br />
+                </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success">{{secondtip}}</a>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success">{{thirdtip}}</a>
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="well">
+                            <p style="font-size:11px;"> <span>{{lessmoretextforper}}</span><!--{{bed}} bed {{type}} in {{country}}-->.</p>
                         </div>
                     </div>
 
+                    <div class="col-md-6 col-xs-6">
+                        <div class="well">
+                            <p style="font-size:11px;">{{righttextforhouse}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                        <div class="well">
+                            <p style="font-size:11px;"><span>{{lessmoretextforsimilar}}</span> {{bed}} bed {{type}} in {{country}}.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                        <div class="well">
+                            <p style="font-size:11px;">{{righttextforsimilar}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -336,3 +348,4 @@
 
 
 
+	
