@@ -14,9 +14,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $scope.uid = authData.uid;
     $scope.sid = authData.sid;
     $scope.rememberme = authData.remember;
-
     $scope.furl = mainServicebase + 'user/' + $scope.uid + '/sensor/' + $scope.sid + '/powerinfo/graphtoday';
-
     $scope.surl = mainServicebase + 'user/' + $scope.uid + '/sensor/' + $scope.sid + '/powerinfo/now'
     $scope.todayurl = mainServicebase + 'user/' + $scope.uid + '/sensor/' + $scope.sid + '/powerinfo/totaltoday'
     $scope.dailyavg = mainServicebase + 'user/' + $scope.uid + '/sensor/' + $scope.sid + '/powerinfo/daily_average'
@@ -486,12 +484,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         },
         error: function (xhr, status) {
 
-
-
         }
     });
-
-
 
 
 
@@ -808,26 +802,40 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
+            var xData = [];
+            var yData = [];
+            var showdate = "";
+
             for (var i = 0; i < data.listPower.length; i++) {
-                // $("#allDates").append("<li>" + new Date(data.listPower[i].timestamp) + "</li>");
-                // $("#allDates").append("<li>" +new Date(moment(new Date(data.listPower[i].timestamp)).zone("+0500")) + "</li>");
                 xData.push(parseFloat(data.listPower[i].power));
                 yData.push(new Date(data.listPower[i].timestamp));
+
+                if (i === 0) {
+                    showdate = new Date(data.listPower[i].timestamp);
+                }
+
             }
 
             switch ($scope.graphname) {
 
                 case "24hrs":
+
+                    var xData = [];
+                    var yData = [];
+                    for (var i = 0; i < data.listPower.length; i++) {
+                        xData.push(parseFloat(data.listPower[i].power));
+                        yData.push(moment(new Date(data.listPower[i].timestamp)).format("hh a"));
+
+                    }
+
                     $scope.graphstep = 4;
                     var predate = $scope.previousdate;
                     var pd = new Date(predate);
-                    $scope.previousdate = moment(new Date(yData[yData.length - 1])).zone("+0000");
-
+                    $scope.previousdate = moment(new Date(showdate)).subtract(1,"days");
+               
                     var aftdate = $scope.datetoshow;
                     var ad = new Date(aftdate);
-                    $scope.datetoshow = moment(new Date(yData[0])).zone("+0000");
-
-
+                    $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
 
                     $scope.graphtooltip = '%e %b %Y - %H:%M';
                     $scope.seriesformat = '%d %b %Y';
@@ -838,17 +846,37 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     break;
 
                 case "7days":
+
+                    var xData = [];
+                    var yData = [];
+                    for (var i = 0; i < data.listPower.length; i++) {
+                        xData.push(parseFloat(data.listPower[i].power));
+                        yData.push(moment(new Date(data.listPower[i].timestamp)).format("DD MMM YY"));
+
+                    }
+
                     $scope.graphstep = 1;
                     $scope.previousdate = moment(new Date(yData[yData.length - 1])).zone("+0000");
+
                     //  $scope.previousdate = '%d %m %y'
-                    $scope.datetoshow = moment(new Date(yData[0])).zone("+0000");
+                    $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
                     //   $scope.datetoshow = '%d %m %y'
                     $scope.graphtooltip = '%e %b %Y';
                     $scope.seriesformat = '%d %b %Y';
-                    $scope.fulltooltip = 'point.x:' + $scope.graphtooltip + '';
+                    $scope.fulltooltip = 'point.key';
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "30days":
+
+
+                    var xData = [];
+                    var yData = [];
+                    for (var i = 0; i < data.listPower.length; i++) {
+                        xData.push(parseFloat(data.listPower[i].power));
+                        yData.push(moment(new Date(data.listPower[i].timestamp)).format("DD MMM YY"));
+
+                    }
+
                     $scope.graphstep = 7;
 
                     var predate = $scope.previousdate;
@@ -857,13 +885,21 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                     var aftdate = $scope.datetoshow;
                     var ad = new Date(aftdate);
-                    $scope.datetoshow = moment(new Date(yData[0])).zone("+0000");
+                    $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
                     $scope.graphtooltip = '%e %b %Y';
                     $scope.seriesformat = '%d %b %Y';
-                    $scope.fulltooltip = 'point.x:' + $scope.graphtooltip + '';
+                    $scope.fulltooltip = 'point.key';
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "6month":
+
+                    var xData = [];
+                    var yData = [];
+                    for (var i = 0; i < data.listPower.length; i++) {
+                        xData.push(parseFloat(data.listPower[i].power));
+                        yData.push(moment(new Date(data.listPower[i].timestamp)).format("DD MMM YY"));
+
+                    }
                  
                     $scope.graphstep = 1;
                     var predate = $scope.previousdate;
@@ -873,15 +909,22 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     var aftdate = $scope.datetoshow;
                     var ad = new Date(aftdate);
                     // $scope.datetoshow = moment(ad).format("MMM YYYY");
-                    $scope.datetoshow = moment(new Date(yData[0])).zone("+0000");
+                    $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
                     $scope.graphtooltip = '%b %Y';
                     $scope.seriesformat = '%b %Y';
-                    $scope.fulltooltip = 'point.x:' + $scope.graphtooltip + '';
+                    $scope.fulltooltip = 'point.key';
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "1year":
 
 
+                    var xData = [];
+                    var yData = [];
+                    for (var i = 0; i < data.listPower.length; i++) {
+                        xData.push(parseFloat(data.listPower[i].power));
+                        yData.push(moment(new Date(data.listPower[i].timestamp)).format("DD MMM YY"));
+
+                    }
 
                     $scope.graphstep = 2;
 
@@ -893,10 +936,10 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     var aftdate = $scope.datetoshow;
                     var ad = new Date(aftdate);
                     //  $scope.datetoshow = moment(ad).format("MMM YYYY");
-                    $scope.datetoshow = moment(new Date(yData[0])).zone("+0000");
+                    $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
                     $scope.graphtooltip = '%b %Y';
                     $scope.seriesformat = '%b %Y';
-                    $scope.fulltooltip = 'point.x:' + $scope.graphtooltip + '';
+                    $scope.fulltooltip = 'point.key';
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
             }
@@ -921,8 +964,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 subtitle: {
                     text: ''
                 },
-
-
                 xAxis: {
                     categories: yData,
                     tickLength: 7,
@@ -935,9 +976,9 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     tickmarkPlacement: 'on',
                     tickInterval: $scope.graphstep,
                     labels: {
-                        format: $scope.graphdateformat,
+                     //   format: $scope.graphdateformat,
                         style: {
-                            fontSize: '6px',
+                            fontSize: '8px',
                         },
                     },
                 },
@@ -953,7 +994,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                     }
                 },
-
 
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{' + $scope.fulltooltip + '} </span><table>',
