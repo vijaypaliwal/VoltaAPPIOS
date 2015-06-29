@@ -144,6 +144,7 @@
 <div class="row">
     <div style="text-align: center" class="col-md-12">
         <h5 style="margin-top: 4px;"><i style="font-size: 45px;" class="fa fa-home"></i><span id="today"></span>{{ 'kWh' | translate }} {{ 'usedsofartoday' | translate }}</h5>
+        <p> (this equates to a usage cost of £{{cost}} <br /> & standing charge cost of £{{standingcharge}})</p>
     </div>
 </div>
 <hr />
@@ -328,10 +329,9 @@
                 <div class="row">
                     <div class="col-md-6 col-xs-6">
                         <div class="well">
-                            <p style="font-size:11px;"><span>{{lessmoretextforsimilar}}</span> {{bed}} bed {{propertytypename}} in {{countryname}}.</p>
+                            <p style="font-size:11px;"><span>{{lessmoretextforsimilar}}</span> {{bedcounter}}  {{bed}} bed {{propertytypename}} in {{countryname}}.</p>
                         </div>
                     </div>
-
                     <div class="col-md-6 col-xs-6">
                         <div class="well">
                             <p style="font-size:11px;">{{righttextforsimilar}}</p>

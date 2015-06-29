@@ -15,7 +15,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
     $scope.login = function () {
 
         authService.login($scope.loginData).then(function (response) {
-         
+        
             startTimer();
             $location.path('/graph');
 
@@ -28,7 +28,6 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
         },
          function (xhr) {
 
-       
              if (xhr.status == "401" || xhr.status == "400")
              {
                  $scope.loginData.userName = "";
@@ -51,12 +50,13 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
       
         var i = 1000;
         var authData = localStorageService.get('authorizationData');
-    
         var timeOutTime = i * parseInt(authData.expireIn);
+
+      //  var timeOutTime = i * parseInt(10);
         var timer = $interval(function () {
             if (i >= timeOutTime) {
                 i = 0;
-                bootbox.confirm("Your token has been Expired Now. Press OK to refresh token or Cancel to Logout.", function (result) {
+                bootbox.confirm("Your session has been expired Now. Press OK to refresh token or Cancel to Logout.", function (result) {
                     if (result) {
                        
                         authService.refreshToken().then(function (response)
@@ -69,24 +69,19 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
                         });
                     }
 
-                    else {
+                     else {
                      
                         $location.path('/login');
 
                     }
 
                 });
-
-                //alert("Your Token has been Expire please refresh it");
-                //i = 0;
-                //authService.refreshToken().then(function (response) {
-                //    alert("Token Refreshed successfully");
-                //},
-                //    function (err) {
-                //        $location.path('/login');
-                //    });
+           
+          
             }
+
             i = i + 1000;
+           
         }, 1000)
 
 
@@ -136,8 +131,6 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
         });
     }
-
- 
 
     setTimeout(function () {
         $("#loginusername").val($.cookie('loginusername'));

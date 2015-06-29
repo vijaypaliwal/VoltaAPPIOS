@@ -52,6 +52,10 @@ app.controller('indexController', ['$scope', '$location', 'authService', 'log', 
     }
 
 
+
+
+
+
     $scope.changeLanguage = function (langKey) {
 
         selectedlanguage = langKey;

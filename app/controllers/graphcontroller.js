@@ -603,7 +603,20 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                 document.getElementById("today").innerHTML = TD.toFixed(2) + ' ';
 
+                var costvalue = parseFloat(data.cost)
+                $scope.cost = costvalue.toFixed(2);
+
+                var standingchargevalue = parseFloat(data.standingCharge)
+
+                $scope.standingcharge = standingchargevalue.toFixed(2);
+
         }).error(function (xhr, error, errorStatus, responseText) {
+
+
+            document.getElementById("today").innerHTML = "-";
+
+            $scope.cost = "-";
+            $scope.standingcharge = "-";
 
         });
     };
@@ -841,6 +854,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.seriesformat = '%d %b %Y';
 
                     $scope.fulltooltip = 'point.key';
+                    $scope.lengthofbar = yData.length;
 
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
@@ -864,6 +878,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.graphtooltip = '%e %b %Y';
                     $scope.seriesformat = '%d %b %Y';
                     $scope.fulltooltip = 'point.key';
+                    $scope.lengthofbar = yData.length;
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "30days":
@@ -889,6 +904,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.graphtooltip = '%e %b %Y';
                     $scope.seriesformat = '%d %b %Y';
                     $scope.fulltooltip = 'point.key';
+                    $scope.lengthofbar = yData.length;
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "6month":
@@ -913,6 +929,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.graphtooltip = '%b %Y';
                     $scope.seriesformat = '%b %Y';
                     $scope.fulltooltip = 'point.key';
+                    $scope.lengthofbar = yData.length;
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
                 case "1year":
@@ -940,6 +957,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.graphtooltip = '%b %Y';
                     $scope.seriesformat = '%b %Y';
                     $scope.fulltooltip = 'point.key';
+                    $scope.lengthofbar = yData.length;
                     $scope.datetoshowlabel = Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow)
                     break;
             }
@@ -951,6 +969,9 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                 }
             });
+
+
+            if ($scope.lengthofbar > 5) {
 
             $('#container1').highcharts({
                 chart: {
@@ -1018,10 +1039,11 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }]
             });
 
-
-
-         
-
+            }
+            else {
+                $('#container1').html("<h3>Warning - No data found</h3>");
+                log.error("No data found");
+            }
 
 
         }).error(function (xhr, error, errorStatus, responseText) {

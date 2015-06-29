@@ -5,16 +5,14 @@ var app = angular.module('AngularAuthApp', ['ngRoute', 'ui.bootstrap', 'LocalSto
 // Define all Routes
 app.config(function ($routeProvider) {
 
-   
+    $routeProvider.when("/home", {
+        controller: "homeController",
+        templateUrl: "app/views/home.html"
+    });
 
     $routeProvider.when("/login", {
         controller: "loginController",
         templateUrl: "app/views/login.html"
-    });
-
-    $routeProvider.when("/forgotpassword", {
-        controller: "forgotcontroller",
-        templateUrl: "app/views/forgotpassword.html"
     });
 
     $routeProvider.when("/signup", {
@@ -22,22 +20,19 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/signup.html"
     });
 
-  
+    $routeProvider.when("/graph", {
+        controller: "graphcontroller",
+        templateUrl: "app/views/graph.html"
+    });
 
     $routeProvider.when("/home", {
         controller: "indexController",
         templateUrl: "app/views/home.html"
     });
 
-
-    $routeProvider.when("/graph", {
-        controller: "graphcontroller",
-        templateUrl: "app/views/graph.html"
-    });
-
-    $routeProvider.when("/alert", {
-        controller: "alertcontroller",
-        templateUrl: "app/views/alert.html"
+    $routeProvider.when("/forgotpassword", {
+        controller: "forgotcontroller",
+        templateUrl: "app/views/forgotpassword.html"
     });
 
     $routeProvider.when("/changepassword", {
@@ -45,9 +40,9 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/changepassword.html"
     });
 
-    $routeProvider.when("/account", {
-        controller: "accountcontroller",
-        templateUrl: "app/views/account.html"
+    $routeProvider.when("/browserdetail", {
+        controller: "browserdetailcontroller",
+        templateUrl: "app/views/browserdetail.html"
     });
 
     $routeProvider.when("/household", {
@@ -55,14 +50,27 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/household.html"
     });
 
-   
+
+    $routeProvider.when("/alert", {
+        controller: "alertcontroller",
+        templateUrl: "app/views/alert.html"
+    });
+
+    $routeProvider.when("/comparison", {
+        controller: "comparisioncontroller",
+        templateUrl: "app/views/comparison.html"
+    });
+
+    $routeProvider.when("/account", {
+        controller: "accountcontroller",
+        templateUrl: "app/views/account.html"
+    });
 
     // Default Page load 
     $routeProvider.otherwise({ redirectTo: "/login" });
-
 });
-
 // Common URL of All API
+
 var serviceBase = 'http://restapi.voltaware.com:8080/voltaware/';
 var mainServicebase = 'http://restapi.voltaware.com:8080/voltaware/v1.0/'
 
@@ -70,6 +78,8 @@ app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
     clientId: 'ngAuthApp'
 });
+
+
 
 app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
@@ -100,8 +110,6 @@ app.factory('log', function () {
         },
     };
 });
-
-
 
 
 

@@ -7,6 +7,7 @@
     hr {
         margin-top: 9px;
     }
+
     #weather2
     {
         display:none;
@@ -24,7 +25,6 @@
         <bs-switch  
             ng-model="alert.highusagehr"
             type="checkbox" id="hr" />
-
     </div>
 
 </div>
@@ -34,18 +34,21 @@
         <h5>{{ 'highusageday' | translate }}</h5>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+       
         <bs-switch  
-         ng-model="alert.highusageday"
-         type="checkbox" id="day" />
+            ng-model="alert.highusageday"
+            type="checkbox" id="day" />
     </div>
 </div>
+
 <br />
+
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
        <h5>High usage hour thresholds </h5>
     </div>
      <div class="col-md-2 col-sm-4 col-xs-4">
-        <select class="form-control" ng-model="alert.hourMax">
+         <select class="form-control" ng-model="alert.hourMax">
                <option value="0.25">0.25</option>
                 <option value="0.5">0.5</option>
                 <option value="0.75">0.75</option>
@@ -77,47 +80,6 @@
          </select>
      </div>
 </div>
-
-
-<!--<h4>Appliance Left on</h4>
-<hr />
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h5>Large consumes (e.g. Oven, Heater)</h5>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <bs-switch  
-            ng-model="alert.largeconsumes"
-            type="checkbox" id="Bs-switch1" />
-    </div>
-
-</div>
-<br />
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h5>Computers, TV, games, Consoles, etc</h5>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-       <bs-switch  
-            ng-model="alert.computers" 
-            type="checkbox" id="Bs-switch2" />
-    </div>
-
-</div>
-<br />
-
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h5>Lights</h5>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-         <bs-switch  
-            ng-model="alert.light" 
-            type="checkbox" id="Bs-switch3" />
-    </div>
-
-</div>-->
-
 <br />
 <hr />
 <div class="row">
@@ -125,6 +87,7 @@
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <h5>{{ 'emailforalerts' | translate }}</h5>
   </div>
+
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <input data-ng-model="alert.emailAlert" placeholder="Type Email Address" style="width: 100%;" type="text" />
   </div>
@@ -133,7 +96,10 @@
 <hr />
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <a class="btn btn-danger" data-ng-click="savealert()"><i class="fa fa-check"></i>&nbsp; {{ 'save' | translate }} {{ 'alerts' | translate }}</a>
+        <a class="btn btn-success" data-ng-click="savealert()"><i class="fa fa-check"></i>&nbsp; {{ 'save' | translate }} {{ 'alerts' | translate }}</a>
         <!--<a href="#/graph" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;{{ 'cancel' | translate }}</a>-->
     </div>
 </div>
+
+
+

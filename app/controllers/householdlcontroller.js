@@ -53,7 +53,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: mainServicebase + 'user/' + $scope.uid + '/property',
+            url: mainServicebase +'user/' + $scope.uid + '/property',
             contentType: "application/json; charset=utf-8",
             headers: {
                 'Authorization': 'Bearer ' + $scope.token
@@ -110,7 +110,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: mainServicebase + 'user/' + $scope.uid + '/property',
+            url: mainServicebase +'user/' + $scope.uid + '/property',
             contentType: "application/json; charset=utf-8",
             headers: {
                 'Authorization': 'Bearer ' + $scope.token
@@ -148,7 +148,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: mainServicebase + 'postcode/' + $scope.postcode,
+            url: mainServicebase+'postcode/' + $scope.postcode,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
 
@@ -264,7 +264,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             type: "GET",
             dataType: "json",
 
-            url: mainServicebase + 'electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
+            url: mainServicebase+'electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
 
 
 
@@ -279,7 +279,8 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     $('#tarriflist').append($('<option>').text(tarrif.listTariff[i].displayName).attr('value', tarrif.listTariff[i].id));
                 }
             },
-            error: function (xhr, status) {
+            error: function (xhr, status)
+            {
 
             }
         });
@@ -297,7 +298,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             type: "GET",
             dataType: "json",
 
-            url: mainServicebase + 'electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
+            url: mainServicebase+'electricityprovider/' + electricityid + '/postcode/' + $scope.postcode,
             contentType: "application/json; charset=utf-8",
             success: function (tarrif) {
                 $('#tarriflist').empty();
@@ -348,14 +349,14 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
         if ($scope.iseditmode == true) {
 
-            URL = mainServicebase + 'user/' + $scope.uid + '/property/' + $scope.propertyID;
+            URL = mainServicebase+'user/' + $scope.uid + '/property/' + $scope.propertyID;
             MethodTYPE = "PUT";
 
         }
 
         if ($scope.iseditmode == false) {
 
-            URL = mainServicebase + 'user/' + $scope.uid + '/property';
+            URL = mainServicebase+'user/' + $scope.uid + '/property';
             MethodTYPE = "POST";
 
         }
@@ -382,7 +383,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     }
                     else {
 
-                        log.success("House hold profile updated successfully. ");
+                  
 
                     }
 
@@ -390,7 +391,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
                     if ($("#electricityproviderlist").val() != "" && $("#tarriflist").val() != "") {
                         $.ajax({
-                            url: mainServicebase + 'user/' + $scope.uid + '/property/' + response.id + '/tariff/' + $("#tarriflist").val(),
+                            url: mainServicebase+'user/' + $scope.uid + '/property/' + response.id + '/tariff/' + $("#tarriflist").val(),
                             type: "PUT",
                             accept: "application/json",
 
@@ -402,9 +403,10 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                             success: function (response, status) {
 
                             },
-                            error: function (err) {
-                                log.error("Error::" + err.statusText);
-                            }
+                            error: function (err)
+                            {
+                            log.error("Error::" + err.statusText);
+                             }
                         });
                     }
 
@@ -415,9 +417,10 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     //  $('#houseHold').find("input[type=text], select").val("");
 
                 },
-                error: function (err) {
+                error: function (err)
+                {
 
-                    log.error("Error::" + err);
+                 log.error("Error::" + err);
 
                 }
             })
