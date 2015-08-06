@@ -44,14 +44,20 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
                 dataType: "json",
                 success: function (response, status) {
 
+                    $(".successmessage").show();
+                    $(".errormessage").hide();
+                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.$apply();
+                    hidemessage();
+
                     if ($scope.currentselectedlanguage == "it") {
 
-                        log.success("Пароль успешно изменен");
+                    //    log.success("Пароль успешно изменен");
 
                     }
                     else {
 
-                        log.success("Password changed successfully");
+                     //   log.success("Password changed successfully");
 
                     }
 
@@ -66,14 +72,22 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
 
                     if (xhr.status == 200 && xhr.status < 300) {
+
+                        $(".successmessage").show();
+                        $(".errormessage").hide();
+                        $scope.responsemessage = "Your changes have been saved";
+                        $scope.$apply();
+                        hidemessage();
+
+
                         if ($scope.currentselectedlanguage == "it") {
 
-                            log.success("Пароль успешно изменен");
+                          //  log.success("Пароль успешно изменен");
 
                         }
                         else {
 
-                            log.success("Password changed successfully");
+                        //    log.success("Password changed successfully");
 
                         }
                         $scope.cp.newpassword = "";
@@ -83,7 +97,14 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
                     }
 
                     else {
-                        log.error("some thing went wrong please try again")
+
+                        $(".successmessage").hide();
+                        $(".errormessage").show();
+                        $scope.responsemessage = "some thing went wrong please try again";
+                        $scope.$apply();
+                        hidemessage();
+
+                       // log.error("some thing went wrong please try again")
                     }
 
 
@@ -94,9 +115,13 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
  
         else {
 
-         
+            $(".successmessage").hide();
+            $(".errormessage").show();
+            $scope.responsemessage = "some thing went wrong please try again";
+            $scope.$apply();
+            hidemessage();
 
-            log.error("The passwords you have entered do not match -please re-enter both.")
+          //  log.error("The passwords you have entered do not match -please re-enter both.")
             $scope.cp.newpassword = "";
             $scope.cp.confirmpassword = "";
             $scope.$apply();

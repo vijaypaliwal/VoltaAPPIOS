@@ -50,7 +50,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
             $scope.culturedateformat = "DD MMM YYYY h:mm a";
             var currentdate = moment(new Date()).format("DD MMM YYYY h:mm a");
-            var newarray = currentdate.split(" "); 
+            var newarray = currentdate.split(" ");
 
 
             if (newarray[1] == "Feb") {
@@ -89,7 +89,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
     }
-  
+
     $scope.myculture(userLang);
 
     var twoyearago = new Date();
@@ -256,7 +256,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }); break;
             case "sp":
                 $scope.kwhtext = 'KWh';
-              Highcharts.setOptions({
+                Highcharts.setOptions({
                     lang: {
                         months: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
                         weekdays: ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'],
@@ -411,7 +411,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         }).error(function (xhr, error, errorStatus, responseText) {
 
             $(".loader").hide();
-         
+
 
             log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
 
@@ -425,7 +425,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: mainServicebase +'user/' + $scope.uid + '/property',
+        url: mainServicebase + 'user/' + $scope.uid + '/property',
         contentType: "application/json; charset=utf-8",
         headers: {
             'Authorization': 'Bearer ' + $scope.AuthToken
@@ -434,7 +434,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
-         
+
 
 
             var data = json.length == 0 ? null : json[json.length - 1];
@@ -444,7 +444,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             }
 
             debugger;
-         
+
 
             $scope.propertytypename = data.propertyType.name;
             $scope.bedcounter = data.numberBedrooms;
@@ -476,7 +476,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 });
             }
 
-         
+
 
             $scope.utilizationinfo();
 
@@ -550,7 +550,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             },
             error: function (xhr, status) {
 
-               
+
 
 
             }
@@ -558,8 +558,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
     }
 
 
-    $scope.flagposition = function ()
-    { 
+    $scope.flagposition = function () {
         if ($scope.percentage < -10 && $scope.percentage > -50) {
 
             $(".flag1").show()
@@ -599,16 +598,16 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
             var todayvalue = (data.power.power) * 1
 
-                var TD = parseFloat(todayvalue);
+            var TD = parseFloat(todayvalue);
 
-                document.getElementById("today").innerHTML = TD.toFixed(2) + ' ';
+            document.getElementById("today").innerHTML = TD.toFixed(2) + ' ';
 
-                var costvalue = parseFloat(data.cost)
-                $scope.cost = costvalue.toFixed(2);
+            var costvalue = parseFloat(data.cost)
+            $scope.cost = costvalue.toFixed(2);
 
-                var standingchargevalue = parseFloat(data.standingCharge)
+            var standingchargevalue = parseFloat(data.standingCharge)
 
-                $scope.standingcharge = standingchargevalue.toFixed(2);
+            $scope.standingcharge = standingchargevalue.toFixed(2);
 
         }).error(function (xhr, error, errorStatus, responseText) {
 
@@ -765,7 +764,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
     setInterval(function () { cycle() }, 1000);
 
- 
+
     $scope.marginleft = $scope.now * 4;
 
     if ($scope.now == 23) {
@@ -807,7 +806,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         $http.get($scope.bottomgraphurl, null, { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + $scope.AuthToken } }).success(function (data) {
 
 
-        
+
 
 
             var xData = [];
@@ -844,8 +843,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.graphstep = 4;
                     var predate = $scope.previousdate;
                     var pd = new Date(predate);
-                    $scope.previousdate = moment(new Date(showdate)).subtract(1,"days");
-               
+                    $scope.previousdate = moment(new Date(showdate)).subtract(1, "days");
+
                     var aftdate = $scope.datetoshow;
                     var ad = new Date(aftdate);
                     $scope.datetoshow = moment(new Date(showdate)).zone("+0000");
@@ -916,7 +915,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                         yData.push(moment(new Date(data.listPower[i].timestamp)).format("DD MMM YY"));
 
                     }
-                 
+
                     $scope.graphstep = 1;
                     var predate = $scope.previousdate;
                     var pd = new Date(predate);
@@ -973,71 +972,71 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
             if ($scope.lengthofbar > 5) {
 
-            $('#container1').highcharts({
-                chart: {
-                    type: 'column',
-                    height: 225,
-                    zoomType: 'x',
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: yData,
-                    tickLength: 7,
-                    reversed: true,
-                    type: 'date',
-
-                    title: 'Last 24 Hours Detail',
-                    lineWidth: 0,
-                    minorGridLineWidth: 0,
-                    tickmarkPlacement: 'on',
-                    tickInterval: $scope.graphstep,
-                    labels: {
-                     //   format: $scope.graphdateformat,
-                        style: {
-                            fontSize: '8px',
-                        },
+                $('#container1').highcharts({
+                    chart: {
+                        type: 'column',
+                        height: 225,
+                        zoomType: 'x',
                     },
-                },
-                yAxis: {
-
                     title: {
-                        text: $scope.kwhtext
+                        text: ''
                     },
-                    labels: {
-                        style: {
-                            fontSize: '6px',
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: yData,
+                        tickLength: 7,
+                        reversed: true,
+                        type: 'date',
+
+                        title: 'Last 24 Hours Detail',
+                        lineWidth: 0,
+                        minorGridLineWidth: 0,
+                        tickmarkPlacement: 'on',
+                        tickInterval: $scope.graphstep,
+                        labels: {
+                            //   format: $scope.graphdateformat,
+                            style: {
+                                fontSize: '8px',
+                            },
                         },
+                    },
+                    yAxis: {
 
-                    }
-                },
+                        title: {
+                            text: $scope.kwhtext
+                        },
+                        labels: {
+                            style: {
+                                fontSize: '6px',
+                            },
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{' + $scope.fulltooltip + '} </span><table>',
-                    pointFormat: '<tr>' +
-                        '<td style="padding:0"><b>{point.y:.1f} ' + $scope.kwhtext + '</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{' + $scope.fulltooltip + '} </span><table>',
+                        pointFormat: '<tr>' +
+                            '<td style="padding:0"><b>{point.y:.1f} ' + $scope.kwhtext + '</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
 
 
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: Highcharts.dateFormat($scope.seriesformat, $scope.previousdate) + '-' + Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow),
-                    data: xData,
-                    color: '#589c16'
-                }]
-            });
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: Highcharts.dateFormat($scope.seriesformat, $scope.previousdate) + '-' + Highcharts.dateFormat($scope.seriesformat, $scope.datetoshow),
+                        data: xData,
+                        color: '#589c16'
+                    }]
+                });
 
             }
             else {
@@ -1050,7 +1049,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
-          
+
 
             log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
         });
@@ -1206,7 +1205,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
     $scope.getonedayback = function () {
 
-      
+
 
         var onedayAgo = new Date();
         var onedaybefore = new Date();
@@ -1254,7 +1253,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
 
-               
+
                 break;
             case 2:
 
@@ -1299,7 +1298,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
 
-             break;
+                break;
             case 3:
 
 
@@ -1342,7 +1341,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
 
                 break;
-              
+
             case 4:
 
 
@@ -1420,7 +1419,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     else {
 
 
-                     
+
 
                         //   log.info("can't go forward any further");
                         $("#rightarrow").hide()
@@ -1483,7 +1482,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 $scope.daystoIncrease = $scope.daystoIncrease - 7;
                 onedayafter = onedayafter.setDate(onedayafter.getDate() - $scope.daystoIncrease);
 
-              
+
 
                 onedaybefore = onedaybefore.setDate(onedaybefore.getDate() - ($scope.daystoIncrease - 7))
 
@@ -1615,8 +1614,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             contentType: "application/json; charset=utf-8",
             success: function (response, status) {
 
-          
-              
+
+
 
                 $scope.firsttip = response[0].engTip;
                 $scope.secondtip = response[1].engTip;
@@ -1645,22 +1644,96 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         })
     }
 
- 
+
     $scope.tipdetails()
-   
+
 
     $(".languagechanger").click(function () {
         setTimeout(function () {
 
             $scope.FirstTimeClick(1);
-        
-           // FirstTimeClick(1)
+
+            // FirstTimeClick(1)
         }, 1500);
-        
+
     });
 
 
     //setInterval(function () { $scope.gettodaycounter(); }, 10000);
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: mainServicebase + 'user/' + $scope.uid + '/property',
+        contentType: "application/json; charset=utf-8",
+        headers: {
+            'Authorization': 'Bearer ' + $scope.AuthToken
+        },
+        success: function (json) {
+
+
+
+
+
+            var data = json.length == 0 ? null : json[json.length - 1];
+
+            if (data.sensor != null) {
+                $scope.sensorid = data.sensor.id;
+            }
+
+
+            $scope.propertytypename = data.propertyType.name;
+            $scope.bedcounter = data.numberBedrooms;
+
+            if (data != null) {
+
+                $scope.propertytypeid = data.id;
+                //    $scope.$apply();
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: mainServicebase + 'user/' + $scope.uid + '/property/' + $scope.propertytypeid,
+                    contentType: "application/json; charset=utf-8",
+                    headers: {
+                        'Authorization': 'Bearer ' + $scope.AuthToken
+                    },
+                    success: function (json) {
+
+
+
+                        debugger;
+
+                        $scope.standingcharges = json.tariff.listTariffPriceXML[0].standingCharge
+
+
+                        $scope.newstandingcharges = (json.tariff.listTariffPriceXML[0].standingCharge) / 100;
+
+
+                        var TD = parseFloat($scope.newstandingcharges);
+
+                        $scope.newstandingcharges = TD.toFixed(2);
+
+                        //    $scope.$apply();
+
+
+                    },
+                    error: function (xhr, status) {
+                    }
+                });
+            }
+
+
+
+
+
+
+        },
+        error: function (xhr, status) {
+
+
+
+        }
+    });
 
 }]);
 

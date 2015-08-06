@@ -108,32 +108,25 @@ width: 100% !important;
 
         
 
-        
-
-
-        
-
-        
-
-    
-
-        
-
-
-
-
-
-
-
 
 
         
 
         <hr />
 
+
+
         <div class="row">
             <div class="col-md-12">
-                <a data-ng-disabled="houseHold.$invalid" ng-click="saveproperty()" class="btn btn-success btn-sm pull-right"><i class="fa fa-check"></i>{{ 'save' | translate }}</a>
+
+                <div style="display:none; margin-bottom:0px; text-align:center;" class="alert alert-info successmessage">
+                    <p> {{responsemessage}} </p>
+                </div>
+                <div style="display: none; margin-bottom: 0px; text-align: center; " class="alert alert-danger errormessage">
+                    <p> {{responsemessage}} </p>
+                </div>
+
+                <a style="width:100%;" data-ng-disabled="houseHold.$invalid" ng-click="saveproperty()" class="btn btn-success btn-sm "><i class="fa fa-check"></i>{{ 'save' | translate }}</a>
                 <input type="reset" style="display: none" id="resetbutton" value="" />
             </div>
         </div>

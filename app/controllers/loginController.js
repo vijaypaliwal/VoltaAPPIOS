@@ -32,13 +32,27 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
              {
                  $scope.loginData.userName = "";
                  $scope.loginData.password = "";
-                 log.error("Email or Password Provided is Incorrect Please try again");
+
+                 $(".successmessage").hide();
+                 $(".errormessage").show();
+                 $scope.responsemessage = "Email or Password Provided is Incorrect Please try again";
+                 $scope.$apply();
+                 hidemessage();
+
+              //   log.error("");
              }
 
              else {
                  $scope.loginData.userName = "";
                  $scope.loginData.password = "";
-                 log.error("some thing went wrong");
+
+                 $(".successmessage").hide();
+                 $(".errormessage").show();
+                 $scope.responsemessage = "some thing went wrong";
+                 $scope.$apply();
+                 hidemessage();
+
+                // log.error("some thing went wrong");
              }
            
 

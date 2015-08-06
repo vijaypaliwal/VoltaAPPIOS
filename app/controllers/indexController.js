@@ -2,8 +2,26 @@
 
 'use strict';
 
+function hidemessage()
+{
+
+    setTimeout(function () {
+
+        $(".successmessage").hide();
+        $(".errormessage").hide();
+
+
+    }, 5000);
+
+}
+
 app.controller('indexController', ['$scope', '$location', 'authService', 'log', '$translate',  function ($scope, $location, authService, log, $translate)
 {
+
+   
+
+
+ 
   
   
  

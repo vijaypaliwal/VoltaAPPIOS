@@ -27,6 +27,14 @@
                 <input id="password" type="password" class="form-control" placeholder="{{ 'Password' | translate }}" data-ng-model="loginData.password" value="" required>
                 <br />
                 <!--<a class="btn btn-md btn-info btn-block" href="#/graph">Login</a>-->
+
+                <div style="display:none; margin-bottom:0px; text-align:center;" class="alert alert-info successmessage">
+                    <p> {{responsemessage}} </p>
+                </div>
+                <div style="display: none; margin-bottom: 0px; text-align: center; " class="alert alert-danger errormessage">
+                    <p> {{responsemessage}} </p>
+                </div>
+
                 <button style="margin-top: 10px" class="btn btn-md btn-info btn-block" type="submit" data-ng-click="login()">
 
                     <span style="display: none;" class="loader"><i class="fa fa-spin fa-spinner"></i>{{ 'Pleasewait' | translate }}... </span>

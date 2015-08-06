@@ -200,12 +200,21 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
                 if (xhr.status == 200 && xhr.status < 300) {
+
+                    $(".successmessage").show();
+                    $(".errormessage").hide();
+                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.$apply();
+                    hidemessage();
+
                     if ($scope.currentselectedlanguage == "it") {
 
-                    
+                     //   log.info("Демографические обновлена ​​информация успешно");
 
                     }
                     else {
+
+                    //    log.info("Demographic details Updated successfully");
 
                     }
                 }
@@ -239,6 +248,13 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 success: function (response, status) {
 
 
+                    $(".successmessage").show();
+                    $(".errormessage").hide();
+                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.$apply();
+                    hidemessage();
+
+
                     debugger;
 
 
@@ -259,8 +275,14 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                     debugger;
 
+                    $(".successmessage").hide();
+                    $(".errormessage").show();
+                    $scope.responsemessage = err.statusText;
+                    $scope.$apply();
+                    hidemessage();
 
-                    log.error("Error::" + err.statusText);
+
+                  //  log.error("Error::" + err.statusText);
 
 
                 }
@@ -289,11 +311,17 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 contentType: "application/json; charset=utf-8",
                 success: function (response, status) {
 
+                    $(".successmessage").show();
+                    $(".errormessage").hide();
+                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.$apply();
+                    hidemessage();
+
 
 
                     if ($scope.currentselectedlanguage == "it") {
 
-                        log.info("Банковские реквизиты успешно обновлены");
+                     //   log.info("Банковские реквизиты успешно обновлены");
 
                     }
                     else {
@@ -307,7 +335,11 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
 
-                    log.error("Error::" + err.statusText);
+                    $(".successmessage").hide();
+                    $(".errormessage").show();
+                    $scope.responsemessage = err.statusText;
+                    $scope.$apply();
+                    hidemessage();
 
 
                 }

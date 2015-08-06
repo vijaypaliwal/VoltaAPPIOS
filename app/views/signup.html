@@ -13,6 +13,16 @@
             <input type="email" data-ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" class="form-control" placeholder="{{ 'Email' | translate }}" data-ng-model="registration.emailAddress" required autofocus>
             <input type="password" class="form-control" placeholder="{{ 'Password' | translate }}" data-ng-model="registration.password" required>
             <input type="password" class="form-control" placeholder="{{ 'Confirmpassword' | translate }}" data-ng-model="registration.confirmPassword" required>
+
+            <hr />
+
+            <div style="display:none; margin-bottom:0px; text-align:center;" class="alert alert-info successmessage">
+                <p> {{responsemessage}} </p>
+            </div>
+            <div style="display: none; margin-bottom: 0px; text-align: center; " class="alert alert-danger errormessage">
+                <p> {{responsemessage}} </p>
+            </div>
+
             <button data-ng-disabled="signForm.$invalid" class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">
               <span class="loader" style="display:none;"> <i class="fa fa-spin fa-spinner"></i> {{ 'Pleasewait' | translate }}... </span>
               <span class="submittext">{{ 'Submit' | translate }} </span>

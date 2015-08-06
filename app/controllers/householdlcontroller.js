@@ -376,9 +376,17 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 contentType: "application/json; charset=utf-8",
                 success: function (response, status) {
 
+                    $(".successmessage").show();
+                    $(".errormessage").hide();
+                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.$apply();
+                    hidemessage();
+
+
+
                     if ($scope.currentselectedlanguage == "it") {
 
-                        log.info("бытовые Профиль успешно обновлены");
+                      //  log.info("бытовые Профиль успешно обновлены");
 
                     }
                     else {
@@ -411,7 +419,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                     }
 
                     if ($("#electricityproviderlist").val() == "" || $("#tarriflist").val() == "") {
-                        log.info("Electricity provider is not updating");
+                       // log.info("Electricity provider is not updating");
                     }
 
                     //  $('#houseHold').find("input[type=text], select").val("");
@@ -420,7 +428,13 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 error: function (err)
                 {
 
-                 log.error("Error::" + err);
+                    $(".successmessage").hide();
+                    $(".errormessage").show();
+                    $scope.responsemessage = err;
+                    $scope.$apply();
+                    hidemessage();
+
+               //  log.error("Error::" + err);
 
                 }
             })

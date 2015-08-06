@@ -40,14 +40,26 @@ app.controller('signupController', ['$scope', '$location', 'authService', 'ngAut
 
              if (response.status == "409") {
 
-                 log.error("Email address already exists Please try with another")
+                 $(".successmessage").hide();
+                 $(".errormessage").show();
+                 $scope.responsemessage = "Email address already exists Please try with another";
+                 $scope.$apply();
+                 hidemessage();
+
+                // log.error("")
 
              }
 
              else
              {
 
-             log.error(response.responseText)
+                 $(".successmessage").hide();
+                 $(".errormessage").show();
+                 $scope.responsemessage = response.responseText;
+                 $scope.$apply();
+                 hidemessage();
+
+          //   log.error(response.responseText)
 
              }
             
