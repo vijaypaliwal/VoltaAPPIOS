@@ -21,7 +21,7 @@ app.config(function ($translateProvider) {
         Utilisationtoday: 'Utilisation today',
         Currentutilisation: 'Current utilisation',
         Youhaveused: 'you have used',
-        Sofartoday: 'since Midnight',
+        Sofartoday: 'so far today',
         Wholehouse: 'Whole house',
         Avgweekdayutilisation: 'Average weekday utilisation',
         Expectedutilisationtoday: 'Expected utilisation today',
@@ -40,6 +40,7 @@ app.config(function ($translateProvider) {
         home: 'Home',
         household: 'House hold',
         kWh: 'kWh',
+        kW: 'kW',
         browserdetails: 'Browser details',
         alerts: 'Alerts',
         householdprofile: 'Household profile',
@@ -114,9 +115,30 @@ app.config(function ($translateProvider) {
         confirmnewpassword: 'Confirm new password',
         inyourneighbour: 'in your neighbourhood',
         bed: 'bed',
-        other: 'Other'
+        other: 'Other',
+        //8 Aug
+        Thisequatestousagecostof: 'This equates to a usage cost of',
+        astandingchargecostof: 'a standing charge cost of',
+        TariffType: 'Tariff Type',
+        DayRate: 'Day Rate',
+        NightRate: 'Night Rate',
+        StandingCharge: 'Standing Charge',
+        ExpiryDate: 'Expiry Date',
+        PaymentMethod: 'Payment Method',
+        HighusageHourThreshold: 'High usage Hour Threshold',
+        HighUsageDayThreshold: 'High Usage Day Threshold',
+        LowActivityAlert: 'Low Activity Alert',
+        MediumActivityAlert: 'Medium Activity Alert',
+        HighActivityAlert: 'High Activity Alert',
+        Mr: 'Mr',
+        Mrs: 'Mrs',
+        Prof: 'Prof',
+        Tariffinfo: 'Tariff Info',
+        beddetachedhousein: 'bed detached house in',
     })
-        //Russian Translation
+
+
+     //Russian Translation
     .translations('it', {
         Logintext: 'Логин',
         Signuptext: 'Подписаться',
@@ -158,6 +180,8 @@ app.config(function ($translateProvider) {
         home: 'Главная',
         household: 'Дом (Квартира)',
         kWh: 'кВт/час',
+      
+        kW: 'кВт',
         browserdetails: 'детали Браузер',
         alerts: 'Предупреждения',
         householdprofile: 'Профиль Дома',
@@ -233,9 +257,32 @@ app.config(function ($translateProvider) {
         inyourneighbour: 'в вашем районе',
         bed: 'кровать',
         other: 'другой',
+        //8 Aug
+        Thisequatestousagecostof: 'Текущий расход',
+        astandingchargecostof: ' постоянная плата',
+        TariffType: 'Тип тарифа',
+        DayRate: 'Дневной тариф',
+        NightRate: 'Ночной тариф',
+        StandingCharge: 'Постоянная плата',
+        ExpiryDate: 'Дата окончания контракта',
+        PaymentMethod: 'Метод оплаты',
+        HighusageHourThreshold: 'Час потолка пикового тарифа',
+        HighUsageDayThreshold: 'День потолка пикового тарифа',
+        LowActivityAlert: 'Оповещение низкой активности',
+        MediumActivityAlert: 'Оповещение средней активности',
+        HighActivityAlert: 'Оповещение высокой активности',
+        Mr: 'Господин',
+        Mrs: 'Госпожа',
+        Prof: 'Профессор',
+        Tariffinfo: 'Информация о тарифе',
+        beddetachedhousein: 'комнатный отдельный дом в',
+
+
     })
 
     .translations('sp', {
+
+
         Logintext: 'Iniciar Sesión',
         Signuptext: 'Contratar',
         Logindescription: 'Si usted tiene correo electrónico y la contraseña , puede utilizar el botón de abajo para acceder al contenido protegido mediante un token',
@@ -243,7 +290,7 @@ app.config(function ($translateProvider) {
         Email: 'Correo electrónico',
         Password: 'contraseña',
         Rememberme: 'Acuérdate de mí',
-        Forgotpassword: 'Has Olvidado Tu Contraseña',
+        Forgotpassword: 'Tu Contraseña',
         Register: 'Registrarse',
         Pleasewait: 'por favor espera',
         Firstname: 'Nombre De Pila',
@@ -276,6 +323,7 @@ app.config(function ($translateProvider) {
         home: 'salpicadero',
         household: 'Casa suspenso',
         kWh: 'kWh',
+        kW: 'kW',
         browserdetails: 'detalles de navegador',
         alerts: 'alertas',
         householdprofile: 'perfil de hogar',
@@ -351,8 +399,25 @@ app.config(function ($translateProvider) {
         inyourneighbour: 'en su vecindario',
         bed: 'cama',
         other: 'otro',
+        //8 Aug
+        Thisequatestousagecostof: 'This equates to a usage cost of',
+        astandingchargecostof: 'a standing charge cost of',
+        TariffType: 'Tariff Type',
+        DayRate: 'Day Rate',
+        NightRate: 'Night Rate',
+        StandingCharge: 'Standing Charge',
+        ExpiryDate: 'Expiry Date',
+        PaymentMethod: 'Payment Method',
+        HighusageHourThreshold: 'High usage Hour Threshold',
+        HighUsageDayThreshold: 'High Usage Day Threshold',
+        LowActivityAlert: 'Low Activity Alert',
+        MediumActivityAlert: 'Medium Activity Alert',
+        HighActivityAlert: 'High Activity Alert',
+        Mr: 'Mr',
+        Mrs: 'Mrs',
+        Prof: 'Prof',
+        Tariffinfo: 'Tariff Info',
+        beddetachedhousein: 'bed detached house in',
     });
-
-
     $translateProvider.preferredLanguage('en');
 });

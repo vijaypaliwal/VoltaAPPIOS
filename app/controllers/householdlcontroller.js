@@ -164,6 +164,12 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             },
             error: function (xhr, status) {
 
+                $(".successmessage").hide();
+                $(".errormessage").show();
+                $scope.responsemessage = xhr.statusText;
+                $scope.$apply();
+                hidemessage();
+
 
             }
         });

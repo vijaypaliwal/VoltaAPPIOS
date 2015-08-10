@@ -46,7 +46,7 @@
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <h5>High usage hour thresholds </h5>
+        <h5>{{ 'HighusageHourThreshold' | translate }} </h5>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-4">
         <select class="form-control" ng-model="alert.hourMax">
@@ -85,7 +85,7 @@
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <h5>High Usage Day threshold</h5>
+        <h5>{{ 'HighUsageDayThreshold' | translate }}</h5>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-4">
         <select style="font-size:13px;" class="form-control" ng-model="alert.dayMax">
@@ -113,7 +113,7 @@
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <h5>Low Activity Alert</h5>
+        <h5>{{ 'LowActivityAlert' | translate }}</h5>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
@@ -126,20 +126,18 @@
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <h5>Medium Activity Alert</h5>
+        <h5>{{ 'MediumActivityAlert' | translate }}</h5>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
         <bs-switch ng-model="alert.mediumactivityalert"
                    type="checkbox" id="medact" />
-
-
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
-        <h5>High Activity Alert</h5>
+        <h5>{{ 'HighActivityAlert' | translate }}</h5>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <bs-switch ng-model="alert.highactivityalert"

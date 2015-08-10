@@ -501,6 +501,20 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             success: function (response) {
 
 
+            
+
+
+                if (selectedlanguage == "it") {
+
+                }
+
+                else {
+
+                }
+
+
+
+
 
                 debugger;
 
@@ -513,12 +527,41 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 $scope.percentage = myper.toFixed(2);
 
                 if ($scope.percentage > 0) {
-                    $scope.lessmoretextforper = "Today you are using " + $scope.percentage + "% more electricity than you have previously used on average";
-                    $scope.righttextforhouse = "Did you know you can visit the Volta website for tips on reducing your electricity consumption"
+
+
+                
+
+
+                    if (selectedlanguage == "it") {
+
+                        $scope.lessmoretextforper = "Сегодня вы используете " + $scope.percentage + "% больше электроэнергии , чем вы ранее использовали в среднем";
+                        $scope.righttextforhouse = "А Вы в курсе, что можете посетить вебсайт Volta Вебсайт для подсказок как снизить потребление электроэнергии"
+
+                    }
+
+                    else {
+
+                        $scope.lessmoretextforper = "Today you are using " + $scope.percentage + "% more electricity than you have previously used on average";
+                       $scope.righttextforhouse = "Did you know you can visit the Volta website for tips on reducing your electricity consumption"
+                    }
+
+
                 }
                 else {
-                    $scope.lessmoretextforper = "Today you are using " + $scope.percentage * (-1) + "% less electricity than you have previously used on average";
-                    $scope.righttextforhouse = "Well done, you are reducing your electricity consumption";
+
+                    if (selectedlanguage == "it")
+                    {
+                        $scope.lessmoretextforper = "Сегодня вы используете " + $scope.percentage + "% меньше электроэнергии , чем вы ранее использовали в среднем";
+                        $scope.righttextforhouse = "А Вы в курсе, что можете посетить вебсайт Volta Вебсайт для подсказок как снизить потребление электроэнергии"
+                    }
+
+                    else
+                      {
+
+                       $scope.lessmoretextforper = "Today you are using " + $scope.percentage * (-1) + "% less electricity than you have previously used";
+                       $scope.righttextforhouse = "Well done, you are reducing your electricity consumption";
+
+                    }
                 }
 
                 //    var per = parseFloat(response.percentage);
@@ -532,12 +575,45 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 $scope.basedonhistory = mypersimilar.toFixed(2);
 
                 if ($scope.basedonhistory > 0) {
-                    $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory + "% more electricity than the average";
-                    $scope.righttextforsimilar = "Did you know you can visit the Volta website for tips on reducing your electricity consumption";
+
+
+                    if (selectedlanguage == "it") {
+
+                        $scope.lessmoretextforsimilar = "ты используешь " + $scope.basedonhistory + "% больше электроэнергии , чем в среднем";
+                        $scope.righttextforsimilar = "А Вы в курсе, что можете посетить вебсайт Volta Вебсайт для подсказок как снизить потребление электроэнергии";
+
+                    }
+
+                    else {
+
+                        $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory + "% more electricity than the average";
+                        $scope.righttextforsimilar = "Did you know you can visit the Volta website for tips on reducing your electricity consumption";
+
+                    }
+
+
+
                 }
                 else {
-                    $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory * (-1) + "% less electricity than the average";
-                    $scope.righttextforsimilar = "Well done, your electricity consumption is less than the National Average";
+
+
+                    if (selectedlanguage == "it") {
+
+                        $scope.lessmoretextforsimilar = "ты используешь " + $scope.basedonhistory * (-1) + "% меньше электроэнергии , чем в среднем";
+                        $scope.righttextforsimilar = "Поздравляем, Вы уменьшаете ваш расход электроэнергии";
+
+                    }
+
+                    else {
+
+                        $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory * (-1) + "% less electricity than the average";
+                        $scope.righttextforsimilar = "Well done, your electricity consumption is less than the National Average";
+
+                    }
+
+
+
+
                 }
 
                 //   var persimilar = parseFloat(response.percentageSimilarHouse);
@@ -545,6 +621,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
                 $scope.$apply();
+                $scope.flagposition();
 
 
             },
@@ -792,11 +869,23 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
+
     $scope.get24hrsgraph = function () {
 
 
-        if ($scope.isDateRangeSelected) {
-            $scope.bottomgraphurl = $scope.bottomgraphurl + "?date=" + $scope.onedayapidate + "+" + "0:0:00";
+        if ($scope.graphname == "24hrs") {
+            if ($scope.isDateRangeSelected) {
+                $scope.bottomgraphurl = $scope.bottomgraphurl + "?date=" + $scope.onedayapidate + "+" + moment(moment(new Date()).add(1, 'hours').zone('UTC')).format("HH:mm:ss");
+            }
+            else {
+                $scope.bottomgraphurl = $scope.bottomgraphurl + "?date=" + moment($scope.onedayapidate).format("DD-MM-YYYY") + "+" + moment(moment(new Date()).add(1, 'hours').zone('UTC')).format("HH:mm:ss");
+            }
+        }
+        else {
+            if ($scope.isDateRangeSelected) {
+                $scope.bottomgraphurl = $scope.bottomgraphurl + "?date=" + $scope.onedayapidate + "+" + moment(moment(new Date()).add(1, 'hours').zone('UTC')).format("HH:mm:ss");
+            }
+
         }
 
         // alert($scope.bottomgraphurl);
@@ -1652,6 +1741,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
         setTimeout(function () {
 
             $scope.FirstTimeClick(1);
+
+            $scope.utilizationinfo();
 
             // FirstTimeClick(1)
         }, 1500);
