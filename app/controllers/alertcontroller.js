@@ -20,7 +20,7 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
         mediumactivityalert: false,
         highactivityalert: false,
         highusageday: false,
-        emailAlert: $scope.email
+        email: $scope.email
 
     };
 
@@ -28,7 +28,6 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
     if (userLang == "es" || "ru" || "ru-ru") {
 
         $("#CurrentDate").html("<b>" + moment(new Date()).format("DD MMM YYYY,h:mm:ss a") + "</b>");
-
     }
 
     else {
@@ -74,17 +73,12 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
 
 
 
-
-
-
         }
     })
 
 
 
     $scope.savealert = function () {
-
-
 
         $.ajax({
             url: mainServicebase + 'user/' + $scope.uid + '/alert/' + $scope.alert.ID,
@@ -99,55 +93,48 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
             success: function (response, status) {
 
 
-                debugger;
-
-
                 $(".successmessage").show();
                 $(".errormessage").hide();
                 $scope.responsemessage = "Your changes have been saved";
                 $scope.$apply();
                 hidemessage();
 
-            
+
 
                 debugger;
+
+
                 if ($scope.currentselectedlanguage == "it") {
 
-                    log.info("Предупреждение успешно добавлен");
+                    // log.info("Предупреждение успешно добавлен");
 
                 }
                 else {
 
-
+                    //  log.info("Alert Added Successfully");
 
                 }
 
             },
             error: function (err) {
 
-            
 
-
-                //log.error("Error::" + err.statusText);
-
-           
                 $(".successmessage").hide();
                 $(".errormessage").show();
-
                 $scope.responsemessage = err.statusText;
                 $scope.$apply();
                 hidemessage();
 
-              
+                // alert("save Error");
 
-              
+
+                //   log.error("Error::" + err.statusText);
 
 
             }
         })
 
     }
-
 
 
 

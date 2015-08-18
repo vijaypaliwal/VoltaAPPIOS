@@ -501,20 +501,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             success: function (response) {
 
 
-            
-
-
-                if (selectedlanguage == "it") {
-
-                }
-
-                else {
-
-                }
-
-
-
-
 
                 debugger;
 
@@ -529,7 +515,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 if ($scope.percentage > 0) {
 
 
-                
 
 
                     if (selectedlanguage == "it") {
@@ -539,27 +524,37 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                     }
 
+                    else if (selectedlanguage == "sp") {
+                        $scope.lessmoretextforper = "Hoy en día se está utilizando " + $scope.percentage + "% más electricidad que ya ha utilizado anteriormente en promedio";
+                        $scope.righttextforhouse = "Sabías que usted puede visitar el sitio web de Volta para obtener consejos sobre la reducción de su consumo de electricidad"
+                    }
+
                     else {
 
                         $scope.lessmoretextforper = "Today you are using " + $scope.percentage + "% more electricity than you have previously used on average";
-                       $scope.righttextforhouse = "Did you know you can visit the Volta website for tips on reducing your electricity consumption"
+                        $scope.righttextforhouse = "Did you know you can visit the Volta website for tips on reducing your electricity consumption"
                     }
 
 
                 }
                 else {
 
-                    if (selectedlanguage == "it")
-                    {
-                        $scope.lessmoretextforper = "Сегодня вы используете " + $scope.percentage + "% меньше электроэнергии , чем вы ранее использовали в среднем";
+                    if (selectedlanguage == "it") {
+                        $scope.lessmoretextforper = "Сегодня вы используете " + $scope.percentage * (-1) + "% меньше электроэнергии , чем вы ранее использовали в среднем";
                         $scope.righttextforhouse = "А Вы в курсе, что можете посетить вебсайт Volta Вебсайт для подсказок как снизить потребление электроэнергии"
                     }
 
-                    else
-                      {
 
-                       $scope.lessmoretextforper = "Today you are using " + $scope.percentage * (-1) + "% less electricity than you have previously used";
-                       $scope.righttextforhouse = "Well done, you are reducing your electricity consumption";
+                    else if (selectedlanguage == "sp") {
+                        $scope.lessmoretextforper = "Hoy en día se está utilizando " + $scope.percentage * (-1) + "% menos de electricidad que ya ha utilizado anteriormente";
+                        $scope.righttextforhouse = "Bien hecho , usted está reduciendo su consumo de electricidad";
+                    }
+
+
+                    else {
+
+                        $scope.lessmoretextforper = "Today you are using " + $scope.percentage * (-1) + "% less electricity than you have previously used";
+                        $scope.righttextforhouse = "Well done, you are reducing your electricity consumption";
 
                     }
                 }
@@ -584,6 +579,13 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                     }
 
+                    else if (selectedlanguage == "sp") {
+
+                        $scope.lessmoretextforsimilar = "tu usas " + $scope.basedonhistory + "% más electricidad que el promedio";
+                        $scope.righttextforsimilar = "Sabías que usted puede visitar el sitio web de Volta para obtener consejos sobre la reducción de su consumo de electricidad";
+
+                    }
+
                     else {
 
                         $scope.lessmoretextforsimilar = "You use " + $scope.basedonhistory + "% more electricity than the average";
@@ -603,6 +605,15 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                         $scope.righttextforsimilar = "Поздравляем, Вы уменьшаете ваш расход электроэнергии";
 
                     }
+
+
+                    else if (selectedlanguage == "sp") {
+
+                        $scope.lessmoretextforsimilar = "tu usas " + $scope.basedonhistory * (-1) + "% menos electricidad que el promedio";
+                        $scope.righttextforsimilar = "Bien hecho , el consumo de electricidad es menor que el promedio nacional";
+
+                    }
+
 
                     else {
 
@@ -1177,6 +1188,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                     $scope.previousdate = moment($scope.previousdate).format($scope.culturedateformat);
                     $scope.isFirstTime = false;
                 }
+                $scope.onedayapidate = new Date();
                 $scope.get24hrs(false); break;
             case 2:
                 if ($scope.isFirstTime) {

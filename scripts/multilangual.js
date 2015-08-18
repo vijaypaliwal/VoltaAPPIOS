@@ -127,6 +127,7 @@ app.config(function ($translateProvider) {
         PaymentMethod: 'Payment Method',
         HighusageHourThreshold: 'High usage Hour Threshold',
         HighUsageDayThreshold: 'High Usage Day Threshold',
+
         LowActivityAlert: 'Low Activity Alert',
         MediumActivityAlert: 'Medium Activity Alert',
         HighActivityAlert: 'High Activity Alert',
@@ -135,6 +136,8 @@ app.config(function ($translateProvider) {
         Prof: 'Prof',
         Tariffinfo: 'Tariff Info',
         beddetachedhousein: 'bed detached house in',
+        bed: 'bed',
+        intext: 'in',
     })
 
 
@@ -268,6 +271,7 @@ app.config(function ($translateProvider) {
         PaymentMethod: 'Метод оплаты',
         HighusageHourThreshold: 'Час потолка пикового тарифа',
         HighUsageDayThreshold: 'День потолка пикового тарифа',
+
         LowActivityAlert: 'Оповещение низкой активности',
         MediumActivityAlert: 'Оповещение средней активности',
         HighActivityAlert: 'Оповещение высокой активности',
@@ -276,6 +280,8 @@ app.config(function ($translateProvider) {
         Prof: 'Профессор',
         Tariffinfo: 'Информация о тарифе',
         beddetachedhousein: 'комнатный отдельный дом в',
+        bed: 'кровать',
+        intext: 'в',
 
 
     })
@@ -400,24 +406,27 @@ app.config(function ($translateProvider) {
         bed: 'cama',
         other: 'otro',
         //8 Aug
-        Thisequatestousagecostof: 'This equates to a usage cost of',
-        astandingchargecostof: 'a standing charge cost of',
-        TariffType: 'Tariff Type',
-        DayRate: 'Day Rate',
-        NightRate: 'Night Rate',
-        StandingCharge: 'Standing Charge',
-        ExpiryDate: 'Expiry Date',
-        PaymentMethod: 'Payment Method',
-        HighusageHourThreshold: 'High usage Hour Threshold',
-        HighUsageDayThreshold: 'High Usage Day Threshold',
-        LowActivityAlert: 'Low Activity Alert',
-        MediumActivityAlert: 'Medium Activity Alert',
-        HighActivityAlert: 'High Activity Alert',
-        Mr: 'Mr',
-        Mrs: 'Mrs',
-        Prof: 'Prof',
-        Tariffinfo: 'Tariff Info',
-        beddetachedhousein: 'bed detached house in',
+        Thisequatestousagecostof: 'Esto equivale a un costo de uso de',
+        astandingchargecostof: 'un coste de carga de pie de',
+        TariffType: 'Tipo de Tarifa',
+        DayRate: 'Día Rate',
+        NightRate: 'Noche Rate',
+        StandingCharge: 'Permanente de carga',
+        ExpiryDate: 'Fecha De Caducidad',
+        PaymentMethod: 'Forma De Pago',
+        HighusageHourThreshold: 'Alto uso de Umbral horas',
+        HighUsageDayThreshold: 'Alto Uso Umbral Día',
+
+        LowActivityAlert: 'Alerta de baja actividad',
+        MediumActivityAlert: 'Medio Alerta Actividad',
+        HighActivityAlert: 'Alerta de alta actividad',
+        Mr: 'Sr',
+        Mrs: 'señora',
+        Prof: 'profe',
+        Tariffinfo: 'Información arancelaria',
+        beddetachedhousein: 'cama casa unifamiliar en',
+        bed: 'cama',
+        intext: 'en',
     });
     $translateProvider.preferredLanguage('en');
 });
