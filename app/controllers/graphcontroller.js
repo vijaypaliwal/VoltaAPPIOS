@@ -508,6 +508,12 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                 $scope.secondleft = (response.percentageSimilarHouse / 2) * 100;
 
+                if ($scope.secondleft > 100) {
+
+                    $scope.secondleft = 90;
+
+                }
+
                 var myper = (response.percentage - 1) * 100;
 
                 $scope.percentage = myper.toFixed(2);
