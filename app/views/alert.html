@@ -32,19 +32,6 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <h5>{{ 'highusageday' | translate }}</h5>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-
-        <bs-switch ng-model="alert.highusageday"
-                   type="checkbox" id="day" />
-    </div>
-</div>
-
-
-
-<div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
         <h5>{{ 'HighusageHourThreshold' | translate }} </h5>
     </div>
@@ -82,6 +69,16 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <h5>{{ 'highusageday' | translate }}</h5>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+        <bs-switch ng-model="alert.highusageday"
+                   type="checkbox" id="day" />
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -144,8 +141,6 @@
                    type="checkbox" id="highact" />
     </div>
 </div>
-
-
 
 
 <hr />

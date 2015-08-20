@@ -230,7 +230,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             $(".loader").hide();
 
 
-            log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
+        //    log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
         });
     };
     var iw = $('body').innerWidth();
@@ -413,7 +413,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             $(".loader").hide();
 
 
-            log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
+          //  log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
 
 
         });
@@ -621,7 +621,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                         $scope.righttextforsimilar = "Well done, your electricity consumption is less than the National Average";
 
                     }
-
 
 
 
@@ -1141,7 +1140,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             }
             else {
                 $('#container1').html("<h3>Warning - No data found</h3>");
-                log.error("No data found");
+              //  log.error("No data found");
             }
 
 
@@ -1151,7 +1150,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
-            log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
+         //   log.error(xhr.consumerMessage + ' ' + '[' + error + ']');
         });
     };
 
@@ -1349,7 +1348,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 else {
 
 
-                    log.info("can't go back any further");
+                //    log.info("can't go back any further");
 
                 }
 
@@ -1394,7 +1393,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 else {
 
 
-                    log.info("can't go back any further");
+                //    log.info("can't go back any further");
 
                 }
 
@@ -1437,7 +1436,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 else {
 
 
-                    log.info("can't go back any further");
+             //       log.info("can't go back any further");
 
                 }
 
@@ -1479,7 +1478,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 else {
 
 
-                    log.info("can't go back any further");
+                 //   log.info("can't go back any further");
 
                 }
                 break;
@@ -1532,7 +1531,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 else {
 
 
-                    log.info("can't go back any further");
+                 //   log.info("can't go back any further");
 
                 }
 

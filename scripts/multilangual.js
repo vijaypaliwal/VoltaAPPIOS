@@ -394,7 +394,7 @@ app.config(function ($translateProvider) {
         monitorhistory: 'Historia del monitor',
         usedsofartoday: 'utilizado hasta ahora hoy',
         changeyourpassword: 'Cambiar la contraseña',
-        usebelowform: 'Por Favor Используйте форму ниже, чтобы изменить свой пароль',
+        usebelowform: 'Utilice el formulario de abajo para cambiar tu contraseña',
         update: 'actualización',
         account: 'cuenta',
         save: 'Guardar',
