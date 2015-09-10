@@ -1074,8 +1074,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 }
             });
 
-
-            if ($scope.lengthofbar > 5) {
+            if ($scope.lengthofbar > 0) {
 
                 $('#container1').highcharts({
                     chart: {
@@ -1379,13 +1378,9 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                     onedaybefore = onedaybefore.setDate(onedaybefore.getDate() - ($scope.daystoIncrease + 7))
                     $scope.previousdate = moment(onedaybefore).format($scope.culturedateformat);
-
-
-
                     $scope.onedayapidate = moment(onedayAgo).format("DD-MM-YYYY");
                     $scope.isDateRangeSelected = true;
                     $scope.datetoshow = moment(onedayAgo).format($scope.culturedateformat);
-
                     if (moment(partodaydate).format($scope.culturedateformat) != moment(onedayAgo).format($scope.culturedateformat)) {
                         $("#rightarrow").show()
                     }
@@ -1483,8 +1478,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
                 else {
 
-
-                 //   log.info("can't go back any further");
+                 // log.info("can't go back any further");
 
                 }
                 break;
@@ -1501,14 +1495,8 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 x = x + ydays;
                 onedayAgocheck = onedayAgocheck.setDate(onedayAgocheck.getDate() - x);
 
-
-
-
-
-
-                if (new Date(twoyearago) <= new Date(onedayAgocheck)) {
-
-
+                if (new Date(twoyearago) <= new Date(onedayAgocheck))
+                {
                     $scope.daystoIncrease = $scope.daystoIncrease + ydays;
                     onedayAgo = onedayAgo.setDate(onedayAgo.getDate() - $scope.daystoIncrease);
                     onedaybefore = onedaybefore.setDate(onedaybefore.getDate() - ($scope.daystoIncrease + ydays))
@@ -1523,9 +1511,6 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                         $("#rightarrow").show()
                     }
                     else {
-
-
-
 
                         //   log.info("can't go forward any further");
                         $("#rightarrow").hide()

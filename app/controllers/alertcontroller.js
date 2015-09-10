@@ -98,12 +98,7 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
                 $scope.responsemessage = "Your changes have been saved";
                 $scope.$apply();
                 hidemessage();
-
-
-
                 debugger;
-
-
                 if ($scope.currentselectedlanguage == "it") {
 
                     // log.info("Предупреждение успешно добавлен");
@@ -118,18 +113,11 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
             },
             error: function (err) {
 
-
                 $(".successmessage").hide();
                 $(".errormessage").show();
                 $scope.responsemessage = err.statusText;
                 $scope.$apply();
                 hidemessage();
-
-                // alert("save Error");
-
-
-                //   log.error("Error::" + err.statusText);
-
 
             }
         })

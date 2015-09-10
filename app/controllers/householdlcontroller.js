@@ -99,7 +99,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
             },
             error: function (xhr, status) {
-                log.error(xhr)
+               // log.error(xhr)
             }
         });
 
@@ -138,7 +138,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
 
 
-                log.error(xhr)
+             //   log.error(xhr)
             }
         });
     }
@@ -199,6 +199,70 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
         }
     }
 
+    $scope.propertytypelabel = function (ID) {
+
+        debugger;
+
+        switch (ID) {
+            case 1:
+                if (selectedlanguage == "it") {
+                    return "квартира";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    return "apartamento";
+                }
+                else {
+                    return "flat";
+                }
+
+                break;
+            case 2:
+                if (selectedlanguage == "it") {
+                    return "Отдельный дом";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    return "chalet";
+                }
+                else {
+                    return "detached house";
+                }
+                break;
+            case 3:
+
+                if (selectedlanguage == "it") {
+                    return "Половина дома";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    return "casa adosada";
+                }
+                else {
+                    return "semi detached house";
+                }
+                break;
+            case 4:
+
+                if (selectedlanguage == "it") {
+                    return "Нежилой";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    return "Comerciales";
+                }
+                else {
+                    return "Commercial";
+                }
+
+                break;
+            default:
+
+        }
+
+
+    }
+
 
     $scope.getpropertytype = function () {
         $.ajax({
@@ -213,19 +277,23 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                 var i = 0;
                 $('#Propertytypelist').append($('<option>').text($scope.selectpropertytext).attr('value', ""));
                 for (i = 0; i < json.length; i++) {
-                    $('#Propertytypelist').append($('<option>').text(json[i].name).attr('value', json[i].id));
+                    // $('#Propertytypelist').append($('<option>').text(json[i].name).attr('value', json[i].id));
 
+                    $('#Propertytypelist').append($('<option>').text($scope.propertytypelabel(json[i].id)).attr('value', json[i].id));
                 }
 
             },
             error: function (xhr, status) {
 
-                log.error(xhr)
+
+
+                //  log.error(xhr)
 
 
             }
         });
     }
+
 
 
     $scope.getelectricityprovider = function () {
@@ -419,7 +487,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
                             },
                             error: function (err)
                             {
-                            log.error("Error::" + err.statusText);
+                          //  log.error("Error::" + err.statusText);
                              }
                         });
                     }

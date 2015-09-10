@@ -9,7 +9,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
     $scope.uid = authData.uid;
     $scope.AuthToken = authData.token;
 
-    console.log("Current Token at account controller" + $scope.AuthToken);
+  
     $scope.editmode = true;
 
 
@@ -65,7 +65,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
         error: function (err) {
 
 
-            log.error("Error::" + err.statusText);
+         //   log.error("Error::" + err.statusText);
 
 
 
@@ -152,7 +152,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
 
 
-            log.error(xhr)
+        //    log.error(xhr)
 
 
         }
@@ -169,12 +169,11 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
     $scope.updateprofile = function () {
 
-
         $.ajax({
             url: mainServicebase+'users/' + $scope.uid,
             type: "PUT",
             accept: "application/json",
-            data: JSON.stringify({ "firstName": $scope.account.firstname, "lastName": $scope.account.lastname, "emailAddress": $scope.account.email, "title": $("#titlelist option:selected").text() }),
+            data: JSON.stringify({ "firstName": $scope.account.firstname, "lastName": $scope.account.lastname, "emailAddress": $scope.account.email, "title": $("#titlelist option:selected").val() }),
             headers: {
                 'Authorization': 'Bearer ' + $scope.AuthToken
             },
@@ -220,7 +219,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
                 }
 
                 else {
-                    log.error(xhr.responseText)
+                  //  log.error(xhr.responseText)
                 }
 
 

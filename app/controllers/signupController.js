@@ -81,7 +81,7 @@ app.controller('signupController', ['$scope', '$location', 'authService', 'ngAut
                     if (result) {
 
                         authService.refreshToken().then(function (response) {
-                            log.success("Token refresh successfully");
+                         //   log.success("Token refresh successfully");
                         },
 
                         function (err) {

@@ -75,7 +75,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
                        
                         authService.refreshToken().then(function (response)
                         {
-                            log.success("Token refresh successfully");
+                          //  log.success("Token refresh successfully");
                         },
 
                         function (err) {
