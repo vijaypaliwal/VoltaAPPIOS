@@ -15,12 +15,22 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
             $scope.selectpropertytext = "выбрать Тип жилья";
             $scope.electricityprovidertext = "выбрать Энергопровайдер"
             $scope.providertext = "выбрать ваш поставщик"
+            $scope.successmsg = "Ваши изменения были сохранены"
+        }
+
+
+        else if (selectedlanguage == "sp") {
+            $scope.selectpropertytext = "Seleccione tipo de inmueble";
+            $scope.electricityprovidertext = "Seleccionar proveedor de electricidad"
+            $scope.providertext = "Seleccione su tarifa"
+            $scope.successmsg = "Se han guardado los cambios"
         }
 
         else {
             $scope.selectpropertytext = "Select property type";
             $scope.electricityprovidertext = "Select electricity provider"
             $scope.providertext = "Select your Tariff"
+            $scope.successmsg = "Your changes have been saved"
         }
     }, 100);
 
@@ -452,7 +462,7 @@ app.controller('householdlcontroller', ['$scope', 'log', 'localStorageService', 
 
                     $(".successmessage").show();
                     $(".errormessage").hide();
-                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.responsemessage = $scope.successmsg;
                     $scope.$apply();
                     hidemessage();
 

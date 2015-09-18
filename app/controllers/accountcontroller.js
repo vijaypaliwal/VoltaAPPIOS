@@ -10,6 +10,27 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
     $scope.AuthToken = authData.token;
 
   
+    setInterval(function () {
+
+        $scope.currentselectedlanguage = selectedlanguage
+        if (selectedlanguage == "it") {
+
+            $scope.successmsg = "Ваши изменения были сохранены"
+        }
+
+
+        else if (selectedlanguage == "sp") {
+
+            $scope.successmsg = "Se han guardado los cambios"
+        }
+
+        else {
+
+            $scope.successmsg = "Your changes have been saved"
+        }
+    }, 100);
+
+
     $scope.editmode = true;
 
 
@@ -202,7 +223,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                     $(".successmessage").show();
                     $(".errormessage").hide();
-                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.responsemessage = $scope.successmsg;
                     $scope.$apply();
                     hidemessage();
 
@@ -249,7 +270,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                     $(".successmessage").show();
                     $(".errormessage").hide();
-                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.responsemessage = $scope.successmsg;
                     $scope.$apply();
                     hidemessage();
 
@@ -312,7 +333,7 @@ app.controller('accountcontroller', ['$scope', 'log', 'localStorageService', fun
 
                     $(".successmessage").show();
                     $(".errormessage").hide();
-                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.responsemessage = $scope.successmsg;
                     $scope.$apply();
                     hidemessage();
 

@@ -10,6 +10,31 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
     $scope.message = "";
 
+
+    setInterval(function () {
+
+        $scope.currentselectedlanguage = selectedlanguage
+        if (selectedlanguage == "it") {
+
+            $scope.notmatchmsg = "по электронной почте или пароль не является корректным Пожалуйста, повторите попытку"
+            $scope.errormsg = "что-то пошло не так";
+        }
+
+
+        else if (selectedlanguage == "sp") {
+
+            $scope.notmatchmsg = "correo electrónico o contraseña proporcionada es incorrecta Por favor, intente de nuevo"
+            $scope.errormsg = "algo salió mal";
+        }
+
+        else {
+
+            $scope.notmatchmsg = "Email or Password Provided is Incorrect Please try again"
+            $scope.errormsg = "some thing went wrong";
+        }
+    }, 100);
+
+
     authService.logOut();
 
     $scope.login = function () {
@@ -35,7 +60,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
                  $(".successmessage").hide();
                  $(".errormessage").show();
-                 $scope.responsemessage = "Email or Password Provided is Incorrect Please try again";
+                 $scope.responsemessage = $scope.notmatchmsg;
                  $scope.$apply();
                  hidemessage();
 
@@ -48,7 +73,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', 'ngAuth
 
                  $(".successmessage").hide();
                  $(".errormessage").show();
-                 $scope.responsemessage = "some thing went wrong";
+                 $scope.responsemessage = $scope.errormsg;
                  $scope.$apply();
                  hidemessage();
 

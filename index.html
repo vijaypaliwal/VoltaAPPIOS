@@ -5,8 +5,8 @@
     <meta name="keywords" content="angularjs,SPA,Single Page Application,refresh tokens,authentication,bearer token authentication,OWIN,bootstrap,bootstrap ui,tutorial,JS framework,ASP.NET WEB API 2,Taiseer Joudeh" />
     <meta name="description" content="SPA built using angularjs,authentication is done using bearer token,back end built using Asp.net web api 2 and OWIN Framework,creatd by Taiseer Joudeh" />
     <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <meta charset="utf-8">    
     <title>Voltameter App </title>
     <link href="content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="content/css/site.css" rel="stylesheet" />
@@ -293,7 +293,9 @@ background-color: #336700;
                         <span style="color:#fff"><i class="glyphicon glyphicon-user"></i>&nbsp;{{ 'Hello' | translate }} &nbsp;<span data-ng-bind="authentication.name"></span></span>
                 </button>
                 <a style="float: left" data-ng-show="authentication.isAuth" href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fa fa-th-list"></i></a>
-                <a style="color: #fff !important; float: left" class="navbar-brand">&nbsp;&nbsp;&nbsp;Volt@ - IOS</a>
+                <a style="color: #fff !important; float: left" class="navbar-brand">
+                    <img src="content/img/logo.png" alt="Volta Ware" style="height:28px; margin-top:-4px;" />
+                </a>
 
             </div>
 

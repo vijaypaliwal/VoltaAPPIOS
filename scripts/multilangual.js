@@ -140,6 +140,7 @@ app.config(function ($translateProvider) {
         beddetachedhousein: 'bed detached house in',
         bed: 'bed',
         intext: 'in',
+        annotation: 'annotation'
     })
 
 
@@ -286,6 +287,7 @@ app.config(function ($translateProvider) {
         beddetachedhousein: 'комнатный отдельный дом в',
         bed: 'кровать',
         intext: 'в',
+        annotation: 'аннотация'
 
 
     })
@@ -386,7 +388,7 @@ app.config(function ($translateProvider) {
         emailaddress: 'Dirección De Correo Electrónico',
         confirmemailaddress: 'Confirmar El Correo',
         currentusage: 'Uso actual',
-        howdoyoucompare: '¿Cómo se puede comparar',
+        howdoyoucompare: '¿Cómo se compara',
         youbased: 'usted (basado en su historial)',
         other2beds: 'Otros 2 cama pisos naborwides',
         yourregion: 'Su región como promedio',
@@ -428,11 +430,12 @@ app.config(function ($translateProvider) {
         Mrs: 'señora',
         Prof: 'profe',
         Miss: 'Perder',
-        DR: 'врач',
+        DR: 'Dr.',
         Tariffinfo: 'Información arancelaria',
         beddetachedhousein: 'cama casa unifamiliar en',
         bed: 'cama',
         intext: 'en',
+        annotation: 'anotación'
     });
     $translateProvider.preferredLanguage('en');
 });

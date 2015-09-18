@@ -421,6 +421,73 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
 
 
 
+    $scope.propertytypelabel = function (Typename) {
+
+        debugger;
+
+        switch (Typename) {
+            case "flat":
+                if (selectedlanguage == "it") {
+                    $scope.propertytypename = "квартира";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    $scope.propertytypename = "apartamento";
+                }
+                else {
+                    $scope.propertytypename = "flat";
+                }
+
+                break;
+            case "detached house":
+                if (selectedlanguage == "it") {
+                    $scope.propertytypename = "Отдельный дом";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    $scope.propertytypename = "chalet";
+                }
+                else {
+                    $scope.propertytypename = "detached house";
+                }
+                break;
+            case "semi detached house":
+
+                if (selectedlanguage == "it") {
+                    $scope.propertytypename = "Половина дома";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    $scope.propertytypename = "casa adosada";
+                }
+                else {
+                    $scope.propertytypename = "semi detached house";
+                }
+                break;
+            case "commercial":
+
+                if (selectedlanguage == "it") {
+                    $scope.propertytypename = "Нежилой";
+
+                }
+                else if (selectedlanguage == "sp") {
+                    $scope.propertytypename = "Comerciales";
+                }
+                else {
+                    $scope.propertytypename = "commercial";
+                }
+
+                break;
+            default:
+
+        }
+
+
+    }
+
+
+
+
 
     $.ajax({
         type: "GET",
@@ -443,10 +510,10 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
                 $scope.sensorid = data.sensor.id;
             }
 
-            debugger;
-
-
             $scope.propertytypename = data.propertyType.name;
+            $scope.propertytypelabel(data.propertyType.name);
+
+        
             $scope.bedcounter = data.numberBedrooms;
             $scope.countryname = data.address.country;
 
@@ -1745,6 +1812,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             $scope.FirstTimeClick(1);
 
             $scope.utilizationinfo();
+            $scope.propertytypelabel($scope.propertytypenamelabel)
 
             // FirstTimeClick(1)
         }, 1500);
@@ -1773,7 +1841,7 @@ app.controller('graphcontroller', ['$scope', '$http', 'authService', 'localStora
             if (data.sensor != null) {
                 $scope.sensorid = data.sensor.id;
             }
-
+            $scope.propertytypenamelabel = data.propertyType.name;
 
             $scope.propertytypename = data.propertyType.name;
             $scope.bedcounter = data.numberBedrooms;

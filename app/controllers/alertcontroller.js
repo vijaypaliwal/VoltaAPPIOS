@@ -4,7 +4,25 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
     var authData = localStorageService.get('authorizationData');
     var userLang = navigator.language || navigator.userLanguage;
 
-   
+    setInterval(function () {
+
+        $scope.currentselectedlanguage = selectedlanguage
+        if (selectedlanguage == "it") {
+
+            $scope.successmsg = "Ваши изменения были сохранены"
+        }
+
+
+        else if (selectedlanguage == "sp") {
+
+            $scope.successmsg = "Se han guardado los cambios"
+        }
+
+        else {
+
+            $scope.successmsg = "Your changes have been saved"
+        }
+    }, 100);
 
 
     $scope.email = authData.userName;
@@ -95,7 +113,7 @@ app.controller('alertcontroller', ['$scope', 'log', 'localStorageService', funct
 
                 $(".successmessage").show();
                 $(".errormessage").hide();
-                $scope.responsemessage = "Your changes have been saved";
+                $scope.responsemessage = $scope.successmsg;
                 $scope.$apply();
                 hidemessage();
                 debugger;

@@ -10,6 +10,35 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
     var authData = localStorageService.get('authorizationData');
 
+
+    setInterval(function () {
+
+        $scope.currentselectedlanguage = selectedlanguage
+        if (selectedlanguage == "it") {
+
+            $scope.notmatchmsg = "по электронной почте или пароль не является корректным Пожалуйста, повторите попытку"
+            $scope.errormsg = "что-то пошло не так";
+            $scope.successmsg = "Ваши изменения были сохранены"
+        }
+
+
+        else if (selectedlanguage == "sp") {
+
+            $scope.notmatchmsg = "correo electrónico o contraseña proporcionada es incorrecta Por favor, intente de nuevo"
+            $scope.errormsg = "algo salió mal";
+            $scope.successmsg = "Se han guardado los cambios"
+        }
+
+        else {
+
+            $scope.notmatchmsg = "Email or Password Provided is Incorrect Please try again"
+            $scope.errormsg = "some thing went wrong";
+            $scope.successmsg = "Your changes have been saved"
+        }
+    }, 100);
+
+
+
     $scope.AuthToken = authData.token;
     $scope.uid = authData.uid;
 
@@ -46,7 +75,7 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
                     $(".successmessage").show();
                     $(".errormessage").hide();
-                    $scope.responsemessage = "Your changes have been saved";
+                    $scope.responsemessage = $scope.successmsg;
                     $scope.$apply();
                     hidemessage();
 
@@ -75,7 +104,7 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
                         $(".successmessage").show();
                         $(".errormessage").hide();
-                        $scope.responsemessage = "Your changes have been saved";
+                        $scope.responsemessage = $scope.successmsg;
                         $scope.$apply();
                         hidemessage();
 
@@ -100,7 +129,7 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
                         $(".successmessage").hide();
                         $(".errormessage").show();
-                        $scope.responsemessage = "some thing went wrong please try again";
+                        $scope.responsemessage = $scope.errormsg;
                         $scope.$apply();
                         hidemessage();
 
@@ -117,7 +146,7 @@ app.controller('changepasswordcontroller', ['$scope', '$location', 'authService'
 
             $(".successmessage").hide();
             $(".errormessage").show();
-            $scope.responsemessage = "some thing went wrong please try again";
+            $scope.responsemessage = $scope.errormsg;
             $scope.$apply();
             hidemessage();
 
